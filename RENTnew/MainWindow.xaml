@@ -6,16 +6,17 @@
         xmlns:local="clr-namespace:RENTnew"
         mc:Ignorable="d"
         Title="Рентген - Автоматизиврованное рабочее место 1.0.0" Height="900" Width="1600"
-      
+        Icon="C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\images\icons8-отмена-50.png"
         WindowStartupLocation="CenterScreen" 
         Background="White"
         >
     <Window.Resources>
+        
         <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Roboto" />
-            <Setter Property="Background" Value="#d8e6e6" />
+            <Setter Property="FontFamily" Value="Times New Roman" />
+            <Setter Property="Background" Value="#e8f1f1" />
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="BorderBrush" Value="#d8e6e6" />
+            <Setter Property="BorderBrush" Value="#e8f1f1" />
             <Setter Property="FontSize" Value="25" />
             <Style.Triggers>
                 <Trigger Property="IsPressed" Value="True">
@@ -26,7 +27,7 @@
             </Style.Triggers>
         </Style>
         <Style TargetType="TabItem">
-            <Setter Property="FontFamily" Value="Roboto" />
+            <Setter Property="FontFamily" Value="Times New Roman" />
             <Setter Property="Background" Value="#FFFAFA	" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="BorderBrush" Value="Black" />
@@ -35,7 +36,7 @@
             <Setter Property="BorderBrush" Value="White" />
         </Style>
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Roboto" />
+            <Setter Property="FontFamily" Value="Times New Roman" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="15" />
         </Style>
@@ -47,7 +48,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" Background="White">
             <MenuItem Header="Начало">
                 <Button></Button>
             </MenuItem>
@@ -62,12 +63,12 @@
             </MenuItem>
         </Menu>
 
-        <UniformGrid Grid.Row="1" Background="#d8e6e6">
+        <UniformGrid Grid.Row="1" Background="#e8f1f1">
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -76,25 +77,27 @@
                     <TextBlock Text="Фамилия:" FontSize="15" Margin="5" ></TextBlock>
                     <TextBox Width="200" Height="20"></TextBox>
                     <TextBlock Text="Дата рождения:" FontSize="15" Margin="5" ></TextBlock>
-                    <DatePicker FontFamily="Roboto"  BorderThickness="0" Name="DateSerach" IsDropDownOpen="False" SelectedDateFormat="Short" Height="25" SelectedDateChanged="DateSerach_SelectedDateChanged" />
+                    <DatePicker FontFamily="Roboto"  BorderThickness="0" Name="DateSerach" IsDropDownOpen="False" SelectedDateFormat="Short" Height="20" />
+                    <Button Content="dfasd" FontSize="15"></Button>
+
                 </WrapPanel>
 
-                <WrapPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom">
-                    <Button Content="Создать" FontSize="15" Margin="5" ></Button>
-                    <Button Content="Открыть" FontSize="15" Margin="5" Name="OpenBTN" ></Button>
-                    <Button Content="Удалить" FontSize="15" Margin="5"></Button>
+                <WrapPanel Grid.Row="1" Orientation="Horizontal">
+                    <Button Content="Создать" FontSize="15" Margin="5" Name="CreatePatient" Click="CreatePatient_Click"></Button>
+                    <Button Content="Открыть" FontSize="15" Margin="5" Name="OpenBTN" Click="OpenBTN_Click" ></Button>
+                    <Button Content="Удалить" FontSize="15" Margin="5" ></Button>
                 </WrapPanel>
 
 
 
-                <DataGrid Background="White" Grid.Row="2" Name="patientDG" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" FontSize="15">
+                <DataGrid Background="GhostWhite" Grid.Row="2" Name="patientDG" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" FontSize="15" MouseDoubleClick="patientDG_MouseDoubleClick">
                     <DataGrid.Columns >
-                        <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=Surname}" Width="*" FontSize="20"/>
-                        <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}" Width="*" FontSize="20"/>
-                        <DataGridTextColumn Header="Отвество" Binding="{Binding Path=MiddleName}" Width="*" FontSize="20"/>
-                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding Path=Age, StringFormat='dd.MM.yyyy'}" Width="*" FontSize="20"/>
-                        <DataGridTextColumn Header="Пол" Binding="{Binding Path=Sex}" Width="*" FontSize="20"/>
-                        <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Adress.Street}" Width="*" FontSize="20"/>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*" FontSize="20" FontFamily="Times New Roman"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*" FontSize="20"/>
+                        <DataGridTextColumn Header="Отвество" Binding="{Binding MiddleName}" Width="*" FontSize="20"/>
+                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding Age, StringFormat='dd.MM.yyyy'}" Width="*" FontSize="20"/>
+                        <DataGridTextColumn Header="Пол" Binding="{Binding Sex}" Width="*" FontSize="20"/>
+                        <DataGridTextColumn Header="Адрес" Binding="{Binding Adress.Street}" Width="*" FontSize="20"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <TextBlock Name="Amount" Grid.Row="3" Text="Количество строк: " FontSize="15"></TextBlock>

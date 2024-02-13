@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\App.xaml
-22116246467
+2208711169
 
-20454836339
+20-1052067876
 226-225020023
-MainWindow.xaml;PatientWindow.xaml;
+CreatePatient.xaml;MainWindow.xaml;
 
 True
 

@@ -60,5 +60,5 @@ C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\obj\Debug\net7.0-windows\refint\R
 C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\obj\Debug\net7.0-windows\RENTnew.pdb
 C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\obj\Debug\net7.0-windows\RENTnew.genruntimeconfig.cache
 C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\obj\Debug\net7.0-windows\ref\RENTnew.dll
-C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\obj\Debug\net7.0-windows\PatientWindow.g.cs
-C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\obj\Debug\net7.0-windows\PatientWindow.baml
+C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\obj\Debug\net7.0-windows\CreatePatient.g.cs
+C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\obj\Debug\net7.0-windows\CreatePatient.baml

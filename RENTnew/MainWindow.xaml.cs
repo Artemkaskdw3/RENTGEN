@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using RENTnew.BD;
 using System.Text;
 using System.Windows;
@@ -23,14 +25,29 @@ namespace RENTnew
             InitializeComponent();
 
             patientDG.DataContext = Helper.db.Patients.Include(x => x.Adress).ToList();
-            
 
-            
-      
+
+
+
         }
 
+        private void patientDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Patient a = patientDG.SelectedItem as Patient;
 
+            MessageBox.Show(a.FirstName);
+        }
 
-       
+        private void OpenBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Patient a = patientDG.SelectedItem as Patient;
+
+            MessageBox.Show(a.FirstName);
+        }
+
+        private void CreatePatient_Click(object sender, RoutedEventArgs e)
+        {
+            new CreatePatient().ShowDialog();
+        }
     }      
 }
