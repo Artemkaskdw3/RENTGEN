@@ -57,7 +57,7 @@
             <TextBlock Text="Отчество"  Margin="0,0,20,0" ></TextBlock>
             <TextBox></TextBox>
             <TextBlock Text="Дата рождения" Margin="0,0,20,0"  ></TextBlock>
-            <TextBox  Name="DateTB" Height="30" FontSize="20" FontFamily="Times New Roman"></TextBox>
+            <TextBox  Name="DateTB" Height="30" FontSize="20" ></TextBox>
             <TextBlock Text="Пол" Margin="0,0,20,0"  ></TextBlock>
             <ComboBox Name="sexCB" Height="25" Text="My Cities"  >
                 <TextBlock FontFamily="Times New Roman" FontSize="15">Мужской</TextBlock>
