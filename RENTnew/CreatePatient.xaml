@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RENTnew"
         mc:Ignorable="d"
-        Title="CreatePatient" Height="600" Width="500"
+        Title="CreatePatient" Height="700" Width="600"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#e8f1f1">
+        Background="#e8f1f1"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
+>
+
+        
     <Window.Resources>
 
         <Style TargetType="Button">
@@ -30,6 +35,7 @@
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="Height" Value="20"></Setter>
+
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
@@ -51,20 +57,42 @@
         
         <UniformGrid Grid.Row="1" Rows="6" Columns="2" Background="MintCream" >
             <TextBlock Text="Фамилия" Margin="0,0,20,0" ></TextBlock>
-            <TextBox ></TextBox>
+            <TextBox Name="surname"></TextBox>
             <TextBlock Text="Имя"  Margin="0,0,20,0" ></TextBlock>
-            <TextBox></TextBox>
+            <TextBox Name="firstNameTB"></TextBox>
             <TextBlock Text="Отчество"  Margin="0,0,20,0" ></TextBlock>
-            <TextBox></TextBox>
+            <TextBox Name="middleNameTB"></TextBox>
             <TextBlock Text="Дата рождения" Margin="0,0,20,0"  ></TextBlock>
-            <TextBox  Name="DateTB" Height="30" FontSize="20" ></TextBox>
+            <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="15"
+              Mask="00/00/0000" Height="25" />
             <TextBlock Text="Пол" Margin="0,0,20,0"  ></TextBlock>
             <ComboBox Name="sexCB" Height="25" Text="My Cities"  >
                 <TextBlock FontFamily="Times New Roman" FontSize="15">Мужской</TextBlock>
                 <TextBlock FontSize="15">Женский</TextBlock>
             </ComboBox>
             <TextBlock Text="Адрес"  Margin="0,0,20,0" ></TextBlock>
-            <TextBox></TextBox>
+            <WrapPanel>
+                <StackPanel Orientation="Horizontal"  >
+                    <TextBlock Text="Город:"  FontSize="15" Margin="0,0,5,0"/>
+                    <TextBox x:Name="cityTextBox" Text="Томск" Width="50" />
+                    <TextBlock Text="Улица:" FontSize="15" Margin="0,0,0,0"/>
+                    <TextBox x:Name="streetTextBox" Text="ул." Width="150"/>
+
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <TextBlock Text="Дом №:" FontSize="15" Margin="0,0,5,0"/>
+                    <TextBox x:Name="houseTextBox" Width="25" />
+
+                    <TextBlock Text="Литера:" FontSize="15" Margin="0,0,5,0"/>
+                    <TextBox x:Name="letterTextBox" Width="25"/>
+
+                    <TextBlock Text="Квартира: №" FontSize="15" Margin="0,0,5,0"/>
+                    <TextBox x:Name="apartmentTextBox" Width="25" />
+                </StackPanel>
+            </WrapPanel>
+            
+
         </UniformGrid>
         <UniformGrid Grid.Row="2" Background="MintCream">
             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">

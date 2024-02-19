@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:RENTnew"
         mc:Ignorable="d"
         Title="Рентген - Автоматизиврованное рабочее место 1.0.0" Height="900" Width="1600"
-        Icon="C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\images\icons8-отмена-50.png"
         WindowStartupLocation="CenterScreen" 
         Background="White"
-        >
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+    
     <Window.Resources>
         
         <Style TargetType="Button">
@@ -26,23 +26,40 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="TabItem">
+        <Style TargetType="DataGridRow">
             <Setter Property="FontFamily" Value="Times New Roman" />
             <Setter Property="Background" Value="#FFFAFA	" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="BorderBrush" Value="Black" />
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="Height" Value="20" />
+            <Setter Property="FontSize" Value="25" />
+            
             <Setter Property="BorderBrush" Value="White" />
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Times New Roman" />
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontSize" Value="25" />
         </Style>
+        
 
     </Window.Resources>
     <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="Adress" >
+                <WrapPanel Orientation="Horizontal">
+                    <TextBlock  Text="{Binding Adress.City}"  FontSize="20"/>
+                    <TextBlock  Text=" "  FontSize="20"/>
+                    <TextBlock  Text="{Binding Adress.Street}"  FontSize="20"/>
+                    <TextBlock  Text=" "  FontSize="20"/>
+                    <TextBlock  Text="{Binding Adress.Building}" FontSize="20"/>
+                    <TextBlock  Text=" "  FontSize="20"/>
+                    <TextBlock  Text="{Binding Adress.Letter}"  FontSize="20"/>
+                    <TextBlock  Text=" "  FontSize="20"/>
+                    <TextBlock  Text="{Binding Adress.Appartaments}"  FontSize="20"/>
+                </WrapPanel>
+            </DataTemplate>
+           
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -73,33 +90,36 @@
                     <RowDefinition Height="40"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <WrapPanel Grid.Row="0" Orientation="Horizontal">
+                <WrapPanel Grid.Row="0" Orientation="Horizontal" >
                     <TextBlock Text="Фамилия:" FontSize="15" Margin="5" ></TextBlock>
-                    <TextBox Width="200" Height="20"></TextBox>
-                    <TextBlock Text="Дата рождения:" FontSize="15" Margin="5" ></TextBlock>
-                    <DatePicker FontFamily="Roboto"  BorderThickness="0" Name="DateSerach" IsDropDownOpen="False" SelectedDateFormat="Short" Height="20" />
-                    <Button Content="dfasd" FontSize="15"></Button>
-
+                    <TextBox Width="200" Height="20" Name="SearchTB"></TextBox>
+                    <TextBlock Text="Дата рождения:" FontSize="15" Margin="10,5,0,0" ></TextBlock>
+                    <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="15" Mask="00/00/0000" Height="25" Width="auto" />
+                    <Button Content="Принять фильтр" FontSize="15" Name="Filter" Click="Filter_Click" Margin="30,0,5,0"></Button>
+                    <TextBlock Text="|" Height="20"></TextBlock>
+                    <Button Content="Обновить" FontSize="15" Name="Update" Click="Update_Click" Margin="5,0,0,0"></Button>
                 </WrapPanel>
 
                 <WrapPanel Grid.Row="1" Orientation="Horizontal">
                     <Button Content="Создать" FontSize="15" Margin="5" Name="CreatePatient" Click="CreatePatient_Click"></Button>
                     <Button Content="Открыть" FontSize="15" Margin="5" Name="OpenBTN" Click="OpenBTN_Click" ></Button>
-                    <Button Content="Удалить" FontSize="15" Margin="5" ></Button>
                 </WrapPanel>
-
-
-
-                <DataGrid Background="GhostWhite" Grid.Row="2" Name="patientDG" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" FontSize="15" MouseDoubleClick="patientDG_MouseDoubleClick">
+                <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,10,0" >
+                    <Button Content="Удалить" FontSize="15" Margin="0,5,0,0"></Button>
+                </StackPanel>
+                
+                <DataGrid  Background="GhostWhite" Grid.Row="2" Name="patientDG" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" FontSize="15" MouseDoubleClick="patientDG_MouseDoubleClick">
                     <DataGrid.Columns >
-                        <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*" FontSize="20" FontFamily="Times New Roman"/>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*" FontSize="20"/>
                         <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*" FontSize="20"/>
                         <DataGridTextColumn Header="Отвество" Binding="{Binding MiddleName}" Width="*" FontSize="20"/>
                         <DataGridTextColumn Header="Дата рождения" Binding="{Binding Age, StringFormat='dd.MM.yyyy'}" Width="*" FontSize="20"/>
                         <DataGridTextColumn Header="Пол" Binding="{Binding Sex}" Width="*" FontSize="20"/>
-                        <DataGridTextColumn Header="Адрес" Binding="{Binding Adress.Street}" Width="*" FontSize="20"/>
+                        <DataGridTemplateColumn Header="Адрес" CellTemplate="{StaticResource Adress}"></DataGridTemplateColumn>
+
                     </DataGrid.Columns>
                 </DataGrid>
+                
                 <TextBlock Name="Amount" Grid.Row="3" Text="Количество строк: " FontSize="15"></TextBlock>
             </Grid>
         </UniformGrid>

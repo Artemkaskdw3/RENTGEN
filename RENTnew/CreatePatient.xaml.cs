@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using RENTnew.BD;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -28,7 +30,8 @@ namespace RENTnew
         static bool TextIsDate(string text)
         {
             var dateFormat = "dd.MM.yyyy";
-            DateTime scheduleDate;
+            DateTime scheduleDate = new DateTime();
+
             if (DateTime.TryParseExact(text, dateFormat, DateTimeFormatInfo.InvariantInfo, DateTimeStyles.None, out scheduleDate))
             {
                 return true;
@@ -37,14 +40,27 @@ namespace RENTnew
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            if (TextIsDate(DateTB.Text))
+            bool sex = false;
+            DateTime a = new DateTime();
+            DateTime.TryParse(_maskedTextBox.Text, out a);
+            if (sexCB.Text == "Женщина")
             {
-                MessageBox.Show("Текст является датой");
+                sex = true;
             }
-            else
-            {
-                MessageBox.Show("Текст не является датой");
-            }
+            Patient newPatients = new Patient {
+                Surname = surname.Text,
+                FirstName = firstNameTB.Text,
+                MiddleName = middleNameTB.Text,
+                Age = a,
+                Sex = sex,
+                AdressId = 1
+                };
+
+            Helper.db.Patients.Add(newPatients);
+
+            Helper.db.SaveChanges();
+            this.Close();
+
         }
     }
 }

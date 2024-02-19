@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = RENTnew
-build_property.ProjectDir = C:\Users\Home-1PC\source\repos\RENTnew\RENTnew\
+build_property.ProjectDir = C:\Users\REAM\source\repos\RENTGEN\RENTnew\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
