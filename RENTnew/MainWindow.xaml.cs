@@ -88,6 +88,11 @@ namespace RENTnew
             _maskedTextBox.Text = "";
             patientDG.DataContext = Helper.db.Patients.Include(x => x.Adress).ToList();
 
-        }  
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            new EditPatient().Show();
+        }
     }      
 }

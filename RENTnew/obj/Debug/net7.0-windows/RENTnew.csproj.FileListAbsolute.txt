@@ -144,3 +144,5 @@ C:\Users\REAM\source\repos\RENTGEN\RENTnew\bin\Debug\net7.0-windows\ro\Xceed.Wpf
 C:\Users\REAM\source\repos\RENTGEN\RENTnew\bin\Debug\net7.0-windows\ru\Xceed.Wpf.AvalonDock.NET5.resources.dll
 C:\Users\REAM\source\repos\RENTGEN\RENTnew\bin\Debug\net7.0-windows\sv\Xceed.Wpf.AvalonDock.NET5.resources.dll
 C:\Users\REAM\source\repos\RENTGEN\RENTnew\bin\Debug\net7.0-windows\zh-Hans\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\REAM\source\repos\RENTGEN\RENTnew\obj\Debug\net7.0-windows\EditPatient.g.cs
+C:\Users\REAM\source\repos\RENTGEN\RENTnew\obj\Debug\net7.0-windows\EditPatient.baml

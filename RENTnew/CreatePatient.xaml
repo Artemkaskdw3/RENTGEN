@@ -5,23 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RENTnew"
         mc:Ignorable="d"
-        Title="CreatePatient" Height="700" Width="600"
+        Title="CreatePatient" Height="700" Width="400"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#e8f1f1"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-
 >
 
-        
-    <Window.Resources>
 
+    <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="Times New Roman" />
-            <Setter Property="Background" Value="MintCream" />
+            <Setter Property="Background" Value="WhiteSmoke"></Setter>
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="BorderBrush" Value="MintCream" />
-            <Setter Property="FontSize" Value="25" />
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="15" />
             <Style.Triggers>
                 <Trigger Property="IsPressed" Value="True">
                     <Trigger.Setters>
@@ -34,75 +32,94 @@
             <Setter Property="FontFamily" Value="Times New Roman" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="15" />
+            <Setter Property="Margin" Value="0,5,0,0"></Setter>
             <Setter Property="Height" Value="20"></Setter>
-
         </Style>
         <Style TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
             <Setter Property="FontFamily" Value="Times New Roman" />
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontSize" Value="25" />
+            <Setter Property="Margin" Value="0,5,5,0"></Setter>
+            <Setter Property="FontSize" Value="15" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
-
     </Window.Resources>
-    <Grid>
+
+    <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
         </Grid.RowDefinitions>
-
-        <TextBlock  Text="Создание нового пациента" HorizontalAlignment="Center"></TextBlock>
         
-        <UniformGrid Grid.Row="1" Rows="6" Columns="2" Background="MintCream" >
-            <TextBlock Text="Фамилия" Margin="0,0,20,0" ></TextBlock>
-            <TextBox Name="surname"></TextBox>
-            <TextBlock Text="Имя"  Margin="0,0,20,0" ></TextBlock>
-            <TextBox Name="firstNameTB"></TextBox>
-            <TextBlock Text="Отчество"  Margin="0,0,20,0" ></TextBlock>
-            <TextBox Name="middleNameTB"></TextBox>
-            <TextBlock Text="Дата рождения" Margin="0,0,20,0"  ></TextBlock>
-            <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="15"
-              Mask="00/00/0000" Height="25" />
-            <TextBlock Text="Пол" Margin="0,0,20,0"  ></TextBlock>
-            <ComboBox Name="sexCB" Height="25" Text="My Cities"  >
-                <TextBlock FontFamily="Times New Roman" FontSize="15">Мужской</TextBlock>
-                <TextBlock FontSize="15">Женский</TextBlock>
-            </ComboBox>
-            <TextBlock Text="Адрес"  Margin="0,0,20,0" ></TextBlock>
-            <WrapPanel>
-                <StackPanel Orientation="Horizontal"  >
-                    <TextBlock Text="Город:"  FontSize="15" Margin="0,0,5,0"/>
-                    <TextBox x:Name="cityTextBox" Text="Томск" Width="50" />
-                    <TextBlock Text="Улица:" FontSize="15" Margin="0,0,0,0"/>
-                    <TextBox x:Name="streetTextBox" Text="ул." Width="150"/>
-
-
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <TextBlock Text="Дом №:" FontSize="15" Margin="0,0,5,0"/>
-                    <TextBox x:Name="houseTextBox" Width="25" />
-
-                    <TextBlock Text="Литера:" FontSize="15" Margin="0,0,5,0"/>
-                    <TextBox x:Name="letterTextBox" Width="25"/>
-
-                    <TextBlock Text="Квартира: №" FontSize="15" Margin="0,0,5,0"/>
-                    <TextBox x:Name="apartmentTextBox" Width="25" />
-                </StackPanel>
-            </WrapPanel>
-            
-
-        </UniformGrid>
-        <UniformGrid Grid.Row="2" Background="MintCream">
-            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Content="Создать" Grid.Row="2" Margin="35" Name="Create" Click="Create_Click"></Button>
-                <Button Content="Отмена" Grid.Row="2" Margin="35"></Button>
-              
-            </WrapPanel>
-        </UniformGrid>
+        <TextBlock  Text="Создание нового пациента" HorizontalAlignment="Center" Grid.Row="0" FontWeight="Bold"></TextBlock>
         
-       
+        <TextBlock Text="Фамилия" Grid.Row="1" ></TextBlock>
+        <TextBox Name="surname" Grid.Row="2"></TextBox>
+
+        <TextBlock Text="Имя"   Grid.Row="3"></TextBlock>
+        <TextBox Name="firstNameTB" Grid.Row="4"></TextBox>
+
+        <TextBlock Text="Отчество"   Grid.Row="5"></TextBlock>
+        <TextBox Name="middleNameTB" Grid.Row="6"></TextBox>
+
+        <TextBlock Text="Дата рождения"  Grid.Row="7" ></TextBlock>
+        <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="14" Mask="00/00/0000" Height="20" Grid.Row="8"/>
+
+        <TextBlock Text="Пол"  Grid.Row="9" ></TextBlock>
+        <ComboBox Name="sexCB" Text="My Cities" Grid.Row="10" Height="20"  >
+            <ComboBoxItem FontFamily="Times New Roman" >Мужской</ComboBoxItem>
+            <ComboBoxItem FontFamily="Times New Roman" >Женский</ComboBoxItem>
+        </ComboBox>
+
+
+        <TextBlock Text="Город:" Grid.Row="11" />
+        <TextBox x:Name="cityTextBox" Text="Томск"  Grid.Row="12"/>
+
+        <TextBlock Text="Улица:" Grid.Row="13"/>
+        <TextBox x:Name="streetTextBox" Grid.Row="14"/>
+
+        <TextBlock Text="Дом №:"   Grid.Row="15"/>
+        <TextBox x:Name="houseTextBox"  Grid.Row="16"/>
+
+        <TextBlock Text="Литера:"  Grid.Row="17"/>
+        <TextBox x:Name="letterTextBox"  Grid.Row="18"/>
+
+        <TextBlock Text="Квартира: №" Grid.Row="19"/>
+        <TextBox x:Name="apartmentTextBox" Grid.Row="20"/>
+
+
+
+
+        <StackPanel Grid.Row="21" >
+            <Button Content="Создать" Name="Create" Click="Create_Click"></Button>
+            <Button Content="Отмена"></Button>
+        </StackPanel>
+
+
+
+
+
+
 
 
     </Grid>
