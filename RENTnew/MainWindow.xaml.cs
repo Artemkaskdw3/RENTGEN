@@ -92,7 +92,7 @@ namespace RENTnew
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            new EditPatient().Show();
+            new EditPatient(patientDG.SelectedItem as Patient).ShowDialog();
         }
     }      
 }

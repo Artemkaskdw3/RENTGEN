@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RENTnew.BD;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,21 @@ namespace RENTnew
     /// </summary>
     public partial class EditPatient : Window
     {
-        public EditPatient()
+        Patient _patient;
+        public EditPatient(Patient patient)
         {
             InitializeComponent();
+            this._patient = patient;
+            surname.Text = patient.Surname;
+            firstNameTB.Text = patient.FirstName;
+            middleNameTB.Text = patient.MiddleName;
+            _maskedTextBox.Text = patient.Age.ToShortDateString();
+            sexCB.SelectedIndex = 1;
+        }
+
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

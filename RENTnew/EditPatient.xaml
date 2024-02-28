@@ -5,18 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RENTnew"
         mc:Ignorable="d"
-        Title="EditPatient" Height="600" Width="400"
+        Title="EditPatient"  Height="700" Width="400"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#e8f1f1"
+        Background="White"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         >
+
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="Times New Roman" />
-            <Setter Property="Background" Value="MintCream" />
+            <Setter Property="Background" Value="White"></Setter>
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="BorderBrush" Value="MintCream" />
-            <Setter Property="FontSize" Value="25" />
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="20" />
             <Style.Triggers>
                 <Trigger Property="IsPressed" Value="True">
                     <Trigger.Setters>
@@ -28,16 +31,19 @@
         <Style TargetType="TextBox">
             <Setter Property="FontFamily" Value="Times New Roman" />
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontSize" Value="10" />
-            <Setter Property="Height" Value="15"></Setter>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Margin" Value="0,5,0,0"></Setter>
+            <Setter Property="Height" Value="20"></Setter>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Times New Roman" />
             <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="0,5,5,0"></Setter>
             <Setter Property="FontSize" Value="15" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </Window.Resources>
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -52,41 +58,60 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
 
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Фамилия:" Grid.Row="0"/>
-        <TextBox Grid.Row="1" Margin="5"/>
 
-        <TextBlock Text="Имя:" Grid.Row="2"/>
-        <TextBox Grid.Row="3" Margin="5"/>
+        <TextBlock Text="Фамилия" Grid.Row="1" ></TextBlock>
+        <TextBox Name="surname" Grid.Row="2"></TextBox>
 
-        <TextBlock Text="Отчество:" Grid.Row="4"/>
-        <TextBox Grid.Row="5" Margin="5"/>
+        <TextBlock Text="Имя"   Grid.Row="3"></TextBlock>
+        <TextBox Name="firstNameTB" Grid.Row="4"></TextBox>
 
-        <TextBlock Text="Дата рождения:" Grid.Row="6"/>
-        <DatePicker Grid.Row="7" Margin="5"/>
+        <TextBlock Text="Отчество"   Grid.Row="5"></TextBlock>
+        <TextBox Name="middleNameTB" Grid.Row="6"></TextBox>
 
-        <TextBlock Text="Пол:" Grid.Row="8"/>
-        <ComboBox Grid.Row="9" Margin="5">
-            <ComboBoxItem>Мужской</ComboBoxItem>
-            <ComboBoxItem>Женский</ComboBoxItem>
+        <TextBlock Text="Дата рождения"  Grid.Row="7" ></TextBlock>
+        <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="14" Mask="00/00/0000" Height="20" Grid.Row="8"/>
+
+        <TextBlock Text="Пол"  Grid.Row="9" ></TextBlock>
+        <ComboBox Name="sexCB" Text="My Cities" Grid.Row="10" Height="20"  >
+            <ComboBoxItem FontFamily="Times New Roman" >Мужской</ComboBoxItem>
+            <ComboBoxItem FontFamily="Times New Roman" >Женский</ComboBoxItem>
         </ComboBox>
-        <TextBlock Text="Адрес:" Grid.Row="10"/>
 
-        <StackPanel Grid.Row="11" Margin="5">
 
-            <TextBlock>Город:</TextBlock>
-            <TextBox Margin="0 5 0 5"/>
-            <TextBlock>Улица:</TextBlock>
-            <TextBox Margin="0 5 0 5"/>
-            <TextBlock>Дом:</TextBlock>
-            <TextBox Margin="0 5 0 5"/>
-            <TextBlock>Литера:</TextBlock>
-            <TextBox Margin="0 5 0 5"/>
-            <TextBlock>Квартира:</TextBlock>
-            <TextBox Margin="0 5 0 5"/>
+        <TextBlock Text="Город:" Grid.Row="11" />
+        <TextBox x:Name="cityTextBox" Text="Томск"  Grid.Row="12"/>
+
+        <TextBlock Text="Улица:" Grid.Row="13"/>
+        <TextBox x:Name="streetTextBox" Grid.Row="14"/>
+
+        <TextBlock Text="Дом №:"   Grid.Row="15"/>
+        <TextBox x:Name="houseTextBox"  Grid.Row="16"/>
+
+        <TextBlock Text="Литера:"  Grid.Row="17"/>
+        <TextBox x:Name="letterTextBox"  Grid.Row="18"/>
+
+        <TextBlock Text="Квартира: №" Grid.Row="19"/>
+        <TextBox x:Name="apartmentTextBox" Grid.Row="20"/>
+
+
+
+
+        <StackPanel Grid.Row="21" >
+            <Button Content="Создать" Name="Create" Click="Create_Click"></Button>
+            <Button Content="Отмена"></Button>
         </StackPanel>
     </Grid>
 </Window>
