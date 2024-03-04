@@ -13,10 +13,10 @@
     <Window.Resources>
         
         <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Times New Roman" />
-            <Setter Property="Background" Value="#FFE0E0E0" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Background" Value="#bccbe2" />
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="BorderBrush" Value="#FFE0E0E0" />
+            <Setter Property="BorderBrush" Value="#bccbe2" />
             <Setter Property="FontSize" Value="25" />
             <Style.Triggers>
                 <Trigger Property="IsPressed" Value="True">
@@ -27,7 +27,7 @@
             </Style.Triggers>
         </Style>
         <Style TargetType="DataGridRow">
-            <Setter Property="FontFamily" Value="Times New Roman" />
+            <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="Background" Value="#FFFAFA	" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="BorderBrush" Value="Black" />
@@ -36,7 +36,7 @@
             <Setter Property="BorderBrush" Value="White" />
         </Style>
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Times New Roman" />
+            <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="25" />
         </Style>
@@ -80,7 +80,7 @@
             </MenuItem>
         </Menu>
 
-        <UniformGrid Grid.Row="1" Background="#FFE0E0E0">
+        <UniformGrid Grid.Row="1" Background="#bccbe2">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -95,9 +95,8 @@
                     <TextBox Width="200" Height="20" Name="SearchTB"></TextBox>
                     <TextBlock Text="Дата рождения:" FontSize="15" Margin="10,5,0,0" ></TextBlock>
                     <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="15" Mask="00/00/0000" Height="25" Width="auto" />
-                    <Button Content="Принять фильтр" FontSize="15" Name="Filter" Click="Filter_Click" Margin="30,0,5,0"></Button>
-                    <TextBlock Text="|" Height="20"></TextBlock>
-                    <Button Content="Обновить" FontSize="15" Name="Update" Click="Update_Click" Margin="5,0,0,0"></Button>
+                    <Button Content="Принять фильтр" FontSize="15" Name="Filter" Click="Filter_Click" Margin="10,0,5,0" Background="#FFDADADA"></Button>
+                    <Button Content="Отчистить фильтр" FontSize="15" Name="Update" Click="Update_Click" Margin="0,0,0,0" Background="#FFDADADA"></Button>
                 </WrapPanel>
 
                 <WrapPanel Grid.Row="1" Orientation="Horizontal">
@@ -116,20 +115,19 @@
                     <Button FontSize="15" Margin="5" Name="Edit" Click="Edit_Click" >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/images/icons8-изменить-пользователя-50.png" Margin="0,0,5,0" Height="25" />
-                            <ContentControl Content="Изменить" VerticalAlignment="Center"></ContentControl>
+                            <ContentControl Content="Редактировать" VerticalAlignment="Center"></ContentControl>
                         </StackPanel>
                     </Button>
-                </WrapPanel>
-                <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,10,0" >
                     <Button FontSize="15" Margin="0,5,0,0">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/images/icons8-delete-60.png" Height="25"/>
                             <ContentControl Content="Удалить" VerticalAlignment="Center"></ContentControl>
                         </StackPanel>
                     </Button>
-                </StackPanel>
-                
-                <DataGrid  Background="GhostWhite" Grid.Row="2" Name="patientDG" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" FontSize="15" MouseDoubleClick="patientDG_MouseDoubleClick">
+                </WrapPanel>
+
+
+                <DataGrid  Background="#e6e9ee" Grid.Row="2" Name="patientDG" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" FontSize="15" MouseDoubleClick="patientDG_MouseDoubleClick">
                     <DataGrid.Columns >
                         <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*" FontSize="20"/>
                         <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*" FontSize="20"/>
@@ -141,7 +139,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 
-                <TextBlock Name="Amount" Grid.Row="3" Text="Количество строк: " FontSize="15"></TextBlock>
+                <TextBlock Name="Amount" Grid.Row="3" Text="Количество строк: " FontSize="15" Margin="10"></TextBlock>
             </Grid>
         </UniformGrid>
     </Grid>

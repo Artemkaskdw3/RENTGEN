@@ -15,7 +15,7 @@
 
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Times New Roman" />
+            <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Background" Value="White"></Setter>
             <Setter Property="BorderThickness" Value="0"></Setter>
@@ -30,14 +30,14 @@
             </Style.Triggers>
         </Style>
         <Style TargetType="TextBox">
-            <Setter Property="FontFamily" Value="Times New Roman" />
+            <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="Margin" Value="0,5,0,0"></Setter>
             <Setter Property="Height" Value="20"></Setter>
         </Style>
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Times New Roman" />
+            <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Margin" Value="0,5,5,0"></Setter>
             <Setter Property="FontSize" Value="15" />
@@ -71,7 +71,8 @@
             <RowDefinition Height="Auto"/>
 
         </Grid.RowDefinitions>
-        
+        <TextBlock Text="Создание" FontSize="25" HorizontalAlignment="Center"></TextBlock>
+
         <TextBlock Text="Фамилия" Grid.Row="1" ></TextBlock>
         <TextBox Name="surname" Grid.Row="2"></TextBox>
 
@@ -86,8 +87,8 @@
 
         <TextBlock Text="Пол"  Grid.Row="9" ></TextBlock>
         <ComboBox Name="sexCB" Text="My Cities" Grid.Row="10" Height="20"  >
-            <ComboBoxItem FontFamily="Times New Roman" >Мужской</ComboBoxItem>
-            <ComboBoxItem FontFamily="Times New Roman" >Женский</ComboBoxItem>
+            <ComboBoxItem FontFamily="Arial" >Мужской</ComboBoxItem>
+            <ComboBoxItem FontFamily="Arial" >Женский</ComboBoxItem>
         </ComboBox>
 
 

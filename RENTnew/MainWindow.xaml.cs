@@ -27,6 +27,7 @@ namespace RENTnew
         {
             InitializeComponent();
             patientDG.DataContext = Helper.db.Patients.Include(x => x.Adress).ToList();
+            
         }
 
         private void patientDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
