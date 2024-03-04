@@ -56,6 +56,9 @@ namespace RENTnew
             _patient.Adress.Building = houseTextBox.Text;
             _patient.Adress.Letter = letterTextBox.Text;
             _patient.Adress.Appartaments = apartmentTextBox.Text;
+            Helper.db.SaveChanges();
+            this.Close();
+
         }
     }
 }
