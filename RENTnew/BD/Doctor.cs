@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RENTnew.BD;
+namespace RENTnew;
 
 public partial class Doctor
 {
@@ -9,7 +9,7 @@ public partial class Doctor
 
     public string Surname { get; set; } = null!;
 
-    public string Doctors { get; set; } = null!;
+    public string FirstName { get; set; } = null!;
 
     public string MiddleName { get; set; } = null!;
 

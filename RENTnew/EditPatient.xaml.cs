@@ -30,11 +30,11 @@ namespace RENTnew
             middleNameTB.Text = patient.MiddleName;
             _maskedTextBox.Text = patient.Age.ToShortDateString();
             sexCB.SelectedIndex = 1;
-            cityTextBox.Text = patient.Adress.City;
-            streetTextBox.Text = patient.Adress.Street;
-            houseTextBox.Text = patient.Adress.Building;
-            letterTextBox.Text = patient.Adress.Letter;
-            apartmentTextBox.Text = patient.Adress.Appartaments;
+            cityTextBox.Text = patient.City;
+            streetTextBox.Text = patient.Street;
+            houseTextBox.Text = patient.Building;
+            letterTextBox.Text = patient.Letter;
+            apartmentTextBox.Text = patient.Appartaments;
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
@@ -51,11 +51,11 @@ namespace RENTnew
             _patient.MiddleName = middleNameTB.Text;
             _patient.Age = a;
             _patient.Sex = SelectedSex;
-            _patient.Adress.City = cityTextBox.Text;
-            _patient.Adress.Street = streetTextBox.Text;
-            _patient.Adress.Building = houseTextBox.Text;
-            _patient.Adress.Letter = letterTextBox.Text;
-            _patient.Adress.Appartaments = apartmentTextBox.Text;
+            _patient.City = cityTextBox.Text;
+            _patient.Street = streetTextBox.Text;
+            _patient.Building = houseTextBox.Text;
+            _patient.Letter = letterTextBox.Text;
+            _patient.Appartaments = apartmentTextBox.Text;
             Helper.db.SaveChanges();
             this.Close();
 

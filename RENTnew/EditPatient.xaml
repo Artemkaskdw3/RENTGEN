@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RENTnew"
         mc:Ignorable="d"
-        Title="EditPatient"  Height="700" Width="400"
+        Title="EditPatient"  Height="900" Width="500"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Background="White"
@@ -19,7 +19,8 @@
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="BorderThickness" Value="0"></Setter>
             <Setter Property="Margin" Value="10" />
-            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="Height" Value="50"> </Setter>
             <Style.Triggers>
                 <Trigger Property="IsPressed" Value="True">
                     <Trigger.Setters>
@@ -31,20 +32,21 @@
         <Style TargetType="TextBox">
             <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="Margin" Value="0,5,0,0"></Setter>
-            <Setter Property="Height" Value="20"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
         </Style>
         <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
             <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Margin" Value="0,5,5,0"></Setter>
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </Window.Resources>
 
-    <Grid Margin="10">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -70,23 +72,31 @@
             <RowDefinition Height="Auto"/>
 
         </Grid.RowDefinitions>
-        <TextBlock Text="Редактирование" FontSize="25" HorizontalAlignment="Center"></TextBlock>
+        <StackPanel Margin="0,0,0,30">
+            <TextBlock Text="Редактирование" FontSize="25" HorizontalAlignment="Center" ></TextBlock>
+            <Line Margin="0,30,0,0"
+                X1="0" Y1="0"
+                X2="900" Y2="0"
+                Stroke="LightSlateGray"
+                StrokeThickness="4" >
+            </Line>
+        </StackPanel>
 
-        <TextBlock Text="Фамилия" Grid.Row="1" ></TextBlock>
+        <TextBlock Text="Фамилия:" Grid.Row="1" ></TextBlock>
         <TextBox Name="surname" Grid.Row="2"></TextBox>
 
-        <TextBlock Text="Имя"   Grid.Row="3"></TextBlock>
+        <TextBlock Text="Имя:"   Grid.Row="3"></TextBlock>
         <TextBox Name="firstNameTB" Grid.Row="4"></TextBox>
 
-        <TextBlock Text="Отчество"   Grid.Row="5"></TextBlock>
+        <TextBlock Text="Отчество:"   Grid.Row="5"></TextBlock>
         <TextBox Name="middleNameTB" Grid.Row="6"></TextBox>
 
-        <TextBlock Text="Дата рождения"  Grid.Row="7" ></TextBlock>
-        <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="14" Mask="00/00/0000" Height="20" Grid.Row="8"/>
+        <TextBlock Text="Дата рождения:"  Grid.Row="7" ></TextBlock>
+        <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="19" Mask="00/00/0000" Height="26" Grid.Row="8"/>
 
-        <TextBlock Text="Пол"  Grid.Row="9" ></TextBlock>
-        <ComboBox Name="sexCB" Text="My Cities" Grid.Row="10" Height="20"  >
-            <ComboBoxItem FontFamily="Arial" >Мужской</ComboBoxItem>
+        <TextBlock Text="Пол:"  Grid.Row="9" ></TextBlock>
+        <ComboBox Name="sexCB" Text="My Cities" Grid.Row="10" Height="35" FontSize="20" >
+            <ComboBoxItem Background="AliceBlue" FontFamily="Arial" >Мужской</ComboBoxItem>
             <ComboBoxItem FontFamily="Arial" >Женский</ComboBoxItem>
         </ComboBox>
 
@@ -103,14 +113,14 @@
         <TextBlock Text="Литера:"  Grid.Row="17"/>
         <TextBox x:Name="letterTextBox"  Grid.Row="18"/>
 
-        <TextBlock Text="Квартира: №" Grid.Row="19"/>
+        <TextBlock Text="Квартира №:" Grid.Row="19"/>
         <TextBox x:Name="apartmentTextBox" Grid.Row="20"/>
 
 
 
 
-        <StackPanel Grid.Row="21" >
-            <Button Content="Редактировать" Name="Create" Click="Create_Click"></Button>
+        <StackPanel Grid.Row="21" Margin="20">
+            <Button Content="Редактировать" Name="Create" Click="Create_Click" ></Button>
             <Button Content="Отмена"></Button>
         </StackPanel>
     </Grid>

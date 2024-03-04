@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace RENTnew.BD;
+namespace RENTnew;
 
 public partial class RentnewContext : DbContext
 {
@@ -14,8 +14,6 @@ public partial class RentnewContext : DbContext
         : base(options)
     {
     }
-
-    public virtual DbSet<Adress> Adresses { get; set; }
 
     public virtual DbSet<Assisstant> Assisstants { get; set; }
 
@@ -43,31 +41,9 @@ public partial class RentnewContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Adress>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Adress__3213E83FBDE61F9F");
-
-            entity.ToTable("Adress");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Appartaments)
-                .HasMaxLength(50)
-                .HasColumnName("appartaments");
-            entity.Property(e => e.Building)
-                .HasMaxLength(50)
-                .HasColumnName("building");
-            entity.Property(e => e.City).HasMaxLength(100);
-            entity.Property(e => e.Letter)
-                .HasMaxLength(10)
-                .HasColumnName("letter");
-            entity.Property(e => e.Street)
-                .HasMaxLength(100)
-                .HasColumnName("street");
-        });
-
         modelBuilder.Entity<Assisstant>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Assissta__3213E83FFAB351AB");
+            entity.HasKey(e => e.Id).HasName("PK__Assissta__3213E83FCD84418C");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.FirstName)
@@ -89,7 +65,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<Departament>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__departam__3213E83F840CDE11");
+            entity.HasKey(e => e.Id).HasName("PK__departam__3213E83F577C1C13");
 
             entity.ToTable("departaments");
 
@@ -104,12 +80,12 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<Doctor>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__doctors__3213E83F956802C1");
+            entity.HasKey(e => e.Id).HasName("PK__doctors__3213E83F776AC109");
 
             entity.ToTable("doctors");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Doctors)
+            entity.Property(e => e.FirstName)
                 .HasMaxLength(100)
                 .HasColumnName("firstName");
             entity.Property(e => e.MiddleName)
@@ -122,7 +98,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<GroupingReserch>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Grouping__3213E83FA56A4031");
+            entity.HasKey(e => e.Id).HasName("PK__Grouping__3213E83FFF706F28");
 
             entity.ToTable("GroupingReserch");
 
@@ -137,7 +113,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<HeathCf>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__HeathCF__3213E83F511A9223");
+            entity.HasKey(e => e.Id).HasName("PK__HeathCF__3213E83F697545F3");
 
             entity.ToTable("HeathCF");
 
@@ -152,7 +128,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<Pathology>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Patholog__3213E83FA8D9E613");
+            entity.HasKey(e => e.Id).HasName("PK__Patholog__3213E83FB49F261B");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.NamePathologies)
@@ -165,35 +141,46 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<Patient>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Patients__3213E83F0DB470C6");
+            entity.HasKey(e => e.Id).HasName("PK__Patients__3213E83F6D4DFD0A");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Age)
                 .HasColumnType("date")
                 .HasColumnName("age");
+            entity.Property(e => e.Appartaments)
+                .HasMaxLength(100)
+                .HasColumnName("appartaments");
+            entity.Property(e => e.Building)
+                .HasMaxLength(100)
+                .HasColumnName("building");
+            entity.Property(e => e.City).HasMaxLength(100);
+            entity.Property(e => e.CreateDate)
+                .HasColumnType("date")
+                .HasColumnName("createDate");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(100)
                 .HasColumnName("firstName");
+            entity.Property(e => e.Letter)
+                .HasMaxLength(100)
+                .HasColumnName("letter");
             entity.Property(e => e.MiddleName)
                 .HasMaxLength(100)
                 .HasColumnName("middleName");
             entity.Property(e => e.Sex).HasColumnName("sex");
+            entity.Property(e => e.Street)
+                .HasMaxLength(100)
+                .HasColumnName("street");
             entity.Property(e => e.Surname)
                 .HasMaxLength(100)
                 .HasColumnName("surname");
             entity.Property(e => e.Title)
                 .HasMaxLength(50)
                 .HasColumnName("title");
-
-            entity.HasOne(d => d.Adress).WithMany(p => p.Patients)
-                .HasForeignKey(d => d.AdressId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Patients__Adress__37A5467C");
         });
 
         modelBuilder.Entity<Reserch>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Reserchs__3213E83F5D317DC0");
+            entity.HasKey(e => e.Id).HasName("PK__Reserchs__3213E83F971ACC0F");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.DateReserch)
@@ -212,36 +199,36 @@ public partial class RentnewContext : DbContext
             entity.HasOne(d => d.Departament).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.DepartamentId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reserchs__depart__3B75D760");
+                .HasConstraintName("FK__Reserchs__depart__4BAC3F29");
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.DoctorId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reserchs__doctor__3D5E1FD2");
+                .HasConstraintName("FK__Reserchs__doctor__4D94879B");
 
             entity.HasOne(d => d.Hcf).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.Hcfid)
-                .HasConstraintName("FK__Reserchs__HCFId__3C69FB99");
+                .HasConstraintName("FK__Reserchs__HCFId__4CA06362");
 
             entity.HasOne(d => d.NameRerserch).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.NameRerserchId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reserchs__nameRe__3A81B327");
+                .HasConstraintName("FK__Reserchs__nameRe__4AB81AF0");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.PatientId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reserchs__patien__3E52440B");
+                .HasConstraintName("FK__Reserchs__patien__4E88ABD4");
 
             entity.HasOne(d => d.Result).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.ResultId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reserchs__result__3F466844");
+                .HasConstraintName("FK__Reserchs__result__4F7CD00D");
         });
 
         modelBuilder.Entity<ReserchsName>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Reserchs__3213E83FFEB21D65");
+            entity.HasKey(e => e.Id).HasName("PK__Reserchs__3213E83F09342FE9");
 
             entity.ToTable("ReserchsName");
 
@@ -256,17 +243,17 @@ public partial class RentnewContext : DbContext
             entity.HasOne(d => d.Group).WithMany(p => p.ReserchsNames)
                 .HasForeignKey(d => d.GroupId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ReserchsN__Group__286302EC");
+                .HasConstraintName("FK__ReserchsN__Group__5070F446");
 
             entity.HasOne(d => d.System).WithMany(p => p.ReserchsNames)
                 .HasForeignKey(d => d.SystemId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ReserchsN__Syste__29572725");
+                .HasConstraintName("FK__ReserchsN__Syste__5165187F");
         });
 
         modelBuilder.Entity<SystemsRe>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__SystemsR__3213E83F5C003B96");
+            entity.HasKey(e => e.Id).HasName("PK__SystemsR__3213E83F6B4E19E6");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.NameSystem).HasMaxLength(100);

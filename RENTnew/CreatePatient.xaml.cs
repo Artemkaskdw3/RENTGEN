@@ -47,26 +47,19 @@ namespace RENTnew
             {
                 sex = true;
             }
-            Adress newAdress = new Adress
-            {
-                City = cityTextBox.Text,
-                Street = streetTextBox.Text,
-                Building = houseTextBox.Text,
-                Letter = letterTextBox.Text,
-                Appartaments = apartmentTextBox.Text
-            };
-            Helper.db.Adresses.Add(newAdress);
-            Helper.db.SaveChanges();
-            int adressId = Helper.db.Adresses.FirstOrDefault(x => x.City == cityTextBox.Text && x.Street == streetTextBox.Text 
-            && x.Building == houseTextBox.Text && x.Appartaments == apartmentTextBox.Text).Id;
+          
             Patient newPatients = new Patient {
                 Surname = surname.Text,
                 FirstName = firstNameTB.Text,
                 MiddleName = middleNameTB.Text,
                 Age = a,
                 Sex = sex,
-                AdressId = adressId
-                };
+                City = cityTextBox.Text,
+                Street = streetTextBox.Text,
+                Building = houseTextBox.Text,
+                Letter = letterTextBox.Text,
+                Appartaments = apartmentTextBox.Text
+            };
 
             Helper.db.Patients.Add(newPatients);
 

@@ -26,7 +26,7 @@ namespace RENTnew
         public MainWindow()
         {
             InitializeComponent();
-            patientDG.DataContext = Helper.db.Patients.Include(x => x.Adress).ToList();
+            patientDG.DataContext = Helper.db.Patients.ToList();
 
         }
 

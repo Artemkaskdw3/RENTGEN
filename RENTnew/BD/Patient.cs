@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RENTnew.BD;
+namespace RENTnew;
 
 public partial class Patient
 {
@@ -17,11 +17,19 @@ public partial class Patient
 
     public bool Sex { get; set; }
 
-    public int AdressId { get; set; }
-
     public string? Title { get; set; }
 
-    public virtual Adress Adress { get; set; } = null!;
+    public string? City { get; set; }
+
+    public string? Street { get; set; }
+
+    public string? Building { get; set; }
+
+    public string? Letter { get; set; }
+
+    public string? Appartaments { get; set; }
+
+    public DateTime? CreateDate { get; set; }
 
     public virtual ICollection<Reserch> Reserches { get; set; } = new List<Reserch>();
 }
