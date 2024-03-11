@@ -7,7 +7,32 @@
         mc:Ignorable="d"    
         Title="Рентген - Автоматизиврованное рабочее место 1.0.0" Height="900" Width="1600"
         WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
         
+        <Menu Background="White">
+            <MenuItem Header="Начало">
+                <Button></Button>
+            </MenuItem>
+            <MenuItem Header="Справочник">
+                <Button></Button>
+            </MenuItem>
+            <MenuItem Header="Отчеты">
+                <Button></Button>
+            </MenuItem>
+            <MenuItem Header="О программе">
+                <Button></Button>
+            </MenuItem>
+        </Menu>
+
+        <DataGrid Padding="0">
+            
+        </DataGrid>
+
+
     </Grid>
 </Window>

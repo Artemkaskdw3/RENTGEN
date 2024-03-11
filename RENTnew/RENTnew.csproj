@@ -9,8 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\icons8-close-80.png" />
     <None Remove="images\icons8-delete-60.png" />
+    <None Remove="images\icons8-edit-80.png" />
     <None Remove="images\icons8-open-box-64.png" />
+    <None Remove="images\icons8-opened-folder-80.png" />
+    <None Remove="images\icons8-plus-80.png" />
+    <None Remove="images\icons8-refresh-80.png" />
+    <None Remove="images\icons8-trash-can-80.png" />
     <None Remove="images\icons8-добавление-администратора-50.png" />
     <None Remove="images\icons8-изменить-пользователя-50.png" />
   </ItemGroup>
@@ -30,10 +36,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="images\icons8-delete-60.png" />
-    <Resource Include="images\icons8-open-box-64.png" />
-    <Resource Include="images\icons8-добавление-администратора-50.png" />
-    <Resource Include="images\icons8-изменить-пользователя-50.png" />
+    <Resource Include="images\icons8-close-80.png" />
+    <Resource Include="images\icons8-edit-80.png" />
+    <Resource Include="images\icons8-opened-folder-80.png" />
+    <Resource Include="images\icons8-plus-80.png" />
+    <Resource Include="images\icons8-refresh-80.png" />
+    <Resource Include="images\icons8-trash-can-80.png" />
   </ItemGroup>
 
 </Project>

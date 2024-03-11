@@ -14,10 +14,11 @@
         <local:GenderConverter x:Key="GenderConverter"/>
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="Arial" />
-            <Setter Property="Background" Value="#bccbe2" />
+            <Setter Property="Background" Value="#DCE4F1" />
             <Setter Property="Foreground" Value="Black" />
-            <Setter Property="BorderBrush" Value="#bccbe2" />
+            <Setter Property="BorderBrush" Value="#DCE4F1" />
             <Setter Property="FontSize" Value="25" />
+            <Setter Property="Margin" Value="06,0,0,0" />
             <Style.Triggers>
                 <Trigger Property="IsPressed" Value="True">
                     <Trigger.Setters>
@@ -28,19 +29,41 @@
         </Style>
         <Style TargetType="DataGridRow">
             <Setter Property="FontFamily" Value="Arial" />
-            <Setter Property="Background" Value="#FFFAFA	" />
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="FontSize" Value="25" />
-            
-            <Setter Property="BorderBrush" Value="White" />
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontSize" Value="25" />
         </Style>
-        
+        <Style TargetType="Image">
+            <Setter Property="Margin" Value="0,0,5,0" />
+            <Setter Property="Height" Value="20" />
+
+        </Style>
+        <Style x:Key="PageButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#DCE4F1"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Trigger.Setters>
+                        <Setter Property="Foreground" Value="White" />
+                    </Trigger.Setters>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
     </Window.Resources>
     <Grid>
@@ -80,7 +103,7 @@
             </MenuItem>
         </Menu>
 
-        <UniformGrid Grid.Row="1" Background="#bccbe2">
+        <UniformGrid Grid.Row="1" Background="#DCE4F1">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -95,40 +118,48 @@
                     <TextBox Width="200" Height="20" Name="SearchTB"></TextBox>
                     <TextBlock Text="Дата рождения:" FontSize="15" Margin="10,5,0,0" ></TextBlock>
                     <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="15" Mask="00/00/0000" Height="25" Width="auto" />
-                    <Button Content="Принять фильтр" FontSize="15" Name="Filter" Click="Filter_Click" Margin="10,0,5,0" Background="#FFDADADA"></Button>
-                    <Button Content="Отчистить фильтр" FontSize="15" Name="Update" Click="Update_Click" Margin="0,0,0,0" Background="#FFDADADA"></Button>
+                    <Button Content="Принять фильтр" FontSize="15" Name="Filter" Click="Filter_Click" Margin="10,0,5,0"></Button>
+                    <Button Content="Отчистить фильтр" FontSize="15" Name="Update" Click="Update_Click" Margin="0,0,0,0"></Button>
                 </WrapPanel>
 
-                <WrapPanel Grid.Row="1" Orientation="Horizontal">
-                    <Button  FontSize="15" Margin="5" Name="CreatePatient" Click="CreatePatient_Click">
+                <WrapPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+                    <Button  FontSize="15"  Name="CreatePatient" Click="CreatePatient_Click">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/images/icons8-добавление-администратора-50.png" Margin="0,0,5,0" Height="25"/>
+                            <Image Source="/images/icons8-plus-80.png" />
                             <ContentControl Content="Создать" VerticalAlignment="Center"></ContentControl>
                         </StackPanel>
                     </Button>
-                    <Button FontSize="15" Margin="5" Name="OpenBTN" Click="OpenBTN_Click" >
+                    <Button FontSize="15"  Name="OpenBTN" Click="OpenBTN_Click" >
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/images/icons8-open-box-64.png" Margin="0,0,5,0" Height="25"/>
+                            <Image Source="/images/icons8-opened-folder-80.png" />
                             <ContentControl Content="Открыть" VerticalAlignment="Center"></ContentControl>
                         </StackPanel>
                     </Button>
-                    <Button FontSize="15" Margin="5" Name="Edit" Click="Edit_Click" >
+                    <Button FontSize="15"  Name="Edit" Click="Edit_Click" >
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/images/icons8-изменить-пользователя-50.png" Margin="0,0,5,0" Height="25" />
-                            <ContentControl Content="Редактировать" VerticalAlignment="Center"></ContentControl>
+                            <Image Source="/images/icons8-edit-80.png" />
+                            <ContentControl Content="Редактировать" VerticalAlignment="Center" ></ContentControl>
                         </StackPanel>
                     </Button>
-                    <Button FontSize="15" Margin="0,5,0,0">
+                    <Button FontSize="15">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="/images/icons8-delete-60.png" Height="25"/>
+                            <Image Source="/images/icons8-refresh-80.png" />
+                            <ContentControl Content="Обновить" VerticalAlignment="Center"></ContentControl>
+                        </StackPanel>
+                    </Button>
+                    <Button FontSize="15" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/images/icons8-trash-can-80.png" />
                             <ContentControl Content="Удалить" VerticalAlignment="Center"></ContentControl>
                         </StackPanel>
                     </Button>
                 </WrapPanel>
 
 
-                <DataGrid  Background="#e6e9ee" Grid.Row="2" Name="patientDG" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" FontSize="15" MouseDoubleClick="patientDG_MouseDoubleClick">
+                <DataGrid CanUserSortColumns="False" AlternatingRowBackground="#E8E8E8" AlternationCount="2" Grid.Row="2" Name="patientDG" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" FontSize="15" MouseDoubleClick="patientDG_MouseDoubleClick" Background="#FFF9F9F9">
+         
                     <DataGrid.Columns >
+                        <DataGridTextColumn Header="Дата создание" Binding="{Binding CreateDate, StringFormat='dd.MM.yyyy'}" Width="*" FontSize="15"/>
                         <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*" FontSize="15"/>
                         <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*" FontSize="15"/>
                         <DataGridTextColumn Header="Отвество" Binding="{Binding MiddleName}" Width="*" FontSize="15"/>
@@ -138,8 +169,12 @@
 
                     </DataGrid.Columns>
                 </DataGrid>
-                
-                <TextBlock Name="Amount" Grid.Row="3" Text="Количество строк: " FontSize="15" Margin="10"></TextBlock>
+                <StackPanel Grid.Row="3" Orientation="Horizontal">
+                    <TextBlock Name="Amount"  Text="Количество строк: " FontSize="15" Margin="10"></TextBlock>
+                    <Button Content="&lt;&lt;&lt;" Style="{StaticResource PageButtonStyle}" Name="btnBack" Click="btnBack_Click"/>
+                    <TextBlock Name="numOfPageTB"  Text="1 " FontSize="15" Margin="10"></TextBlock>
+                    <Button Content=">>>" Style="{StaticResource PageButtonStyle}" Name="btnNext" Click="btnNext_Click"/>
+                </StackPanel>
             </Grid>
         </UniformGrid>
     </Grid>
