@@ -74,7 +74,7 @@
 
         </Grid.RowDefinitions>
         <StackPanel Margin="0,0,0,30">
-            <TextBlock Text="Создание" FontSize="25" HorizontalAlignment="Center" ></TextBlock>
+            <TextBlock Text="Создание"  FontSize="25" HorizontalAlignment="Center" ></TextBlock>
             <Line Margin="0,30,0,0"
             X1="0" Y1="0"
             X2="900" Y2="0"
