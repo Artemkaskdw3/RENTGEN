@@ -6,15 +6,51 @@
         xmlns:local="clr-namespace:RENTnew"
         mc:Ignorable="d"    
         Title="Рентген - Автоматизиврованное рабочее место 1.0.0" Height="900" Width="1600"
-        WindowStartupLocation="CenterScreen">
-    <Grid Margin="10">
+        WindowStartupLocation="CenterScreen"
+        Background="#DCE4F1">
+    <Window.Resources>
+        <local:GenderConverter x:Key="GenderConverter"/>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Background" Value="#DCE4F1" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderBrush" Value="#DCE4F1" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Trigger.Setters>
+                        <Setter Property="Foreground" Value="White" />
+                    </Trigger.Setters>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="DataGridRow">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="25" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="25" />
+        </Style>
+        <Style TargetType="Image">
+            <Setter Property="Margin" Value="0,0,5,0" />
+            <Setter Property="Height" Value="20" />
+        </Style>
+       
+        
+
+    </Window.Resources>
+    <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         
-        <Menu Background="White">
+        <Menu Background="White" Grid.Row="0">
             <MenuItem Header="Начало">
                 <Button></Button>
             </MenuItem>
@@ -28,11 +64,35 @@
                 <Button></Button>
             </MenuItem>
         </Menu>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,0">
+            <Button Height="30">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/icons8-plus-80.png" />
+                    <ContentControl Content="Создать" VerticalAlignment="Center"></ContentControl>
+                </StackPanel>
+            </Button>
+            <Button Height="30">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/icons8-plus-80.png" />
+                    <ContentControl Content="Создать" VerticalAlignment="Center"></ContentControl>
+                </StackPanel>
+            </Button>
+            <Button Height="30">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/icons8-plus-80.png" />
+                    <ContentControl Content="Создать" VerticalAlignment="Center"></ContentControl>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <DataGrid Margin="10,0,10,10" Name="reserchDT" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.Row="2" Background="#FFF9F9F9" AlternatingRowBackground="#E8E8E8" AlternationCount="2" IsReadOnly="True">
 
-        <DataGrid Padding="0">
-            
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Дата посещение" Binding="{Binding DateReserch, StringFormat='dd.MM.yyyy'}" Width="*" FontSize="15"/>
+                <DataGridTextColumn Header="Название исследования" Binding="{Binding ReserchsName.NameReserch}" Width="*" FontSize="15"/>
+                <DataGridTextColumn Header="Заключение" Binding="{Binding ResultId}" Width="*" FontSize="15"/>
+            </DataGrid.Columns>
         </DataGrid>
-
+        
 
     </Grid>
 </Window>

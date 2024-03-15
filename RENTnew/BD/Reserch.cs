@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RENTnew;
+namespace RENTnew.BD;
 
 public partial class Reserch
 {
@@ -28,6 +28,10 @@ public partial class Reserch
     public int ResultId { get; set; }
 
     public decimal Dose { get; set; }
+
+    public int? Assisstant { get; set; }
+
+    public virtual Assisstant? AssisstantNavigation { get; set; }
 
     public virtual Departament Departament { get; set; } = null!;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace RENTnew;
+namespace RENTnew.BD;
 
 public partial class RentnewContext : DbContext
 {
@@ -24,6 +24,8 @@ public partial class RentnewContext : DbContext
     public virtual DbSet<GroupingReserch> GroupingReserches { get; set; }
 
     public virtual DbSet<HeathCf> HeathCfs { get; set; }
+
+    public virtual DbSet<PartOfBody> PartOfBodies { get; set; }
 
     public virtual DbSet<Pathology> Pathologies { get; set; }
 
@@ -49,15 +51,9 @@ public partial class RentnewContext : DbContext
             entity.Property(e => e.FirstName)
                 .HasMaxLength(100)
                 .HasColumnName("firstName");
-            entity.Property(e => e.LoginA)
-                .HasMaxLength(100)
-                .IsUnicode(false);
             entity.Property(e => e.MiddleName)
                 .HasMaxLength(100)
                 .HasColumnName("middleName");
-            entity.Property(e => e.PasswordA)
-                .HasMaxLength(100)
-                .IsUnicode(false);
             entity.Property(e => e.Surname)
                 .HasMaxLength(100)
                 .HasColumnName("surname");
@@ -126,6 +122,15 @@ public partial class RentnewContext : DbContext
                 .HasColumnName("title");
         });
 
+        modelBuilder.Entity<PartOfBody>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__PartOfBo__3214EC07CCE7E252");
+
+            entity.ToTable("PartOfBody");
+
+            entity.Property(e => e.PartOfBodyName).HasMaxLength(100);
+        });
+
         modelBuilder.Entity<Pathology>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Patholog__3213E83FB49F261B");
@@ -137,6 +142,10 @@ public partial class RentnewContext : DbContext
             entity.Property(e => e.Title)
                 .HasMaxLength(50)
                 .HasColumnName("title");
+
+            entity.HasOne(d => d.PartOfBody).WithMany(p => p.Pathologies)
+                .HasForeignKey(d => d.PartOfBodyId)
+                .HasConstraintName("PartOfBodyToPathologys");
         });
 
         modelBuilder.Entity<Patient>(entity =>
@@ -195,6 +204,10 @@ public partial class RentnewContext : DbContext
             entity.Property(e => e.NameRerserchId).HasColumnName("nameRerserchId");
             entity.Property(e => e.PatientId).HasColumnName("patientId");
             entity.Property(e => e.ResultId).HasColumnName("resultId");
+
+            entity.HasOne(d => d.AssisstantNavigation).WithMany(p => p.Reserches)
+                .HasForeignKey(d => d.Assisstant)
+                .HasConstraintName("FK_Orders_To_Customers");
 
             entity.HasOne(d => d.Departament).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.DepartamentId)

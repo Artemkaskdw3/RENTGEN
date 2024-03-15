@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RENTnew;
+namespace RENTnew.BD;
 
 public partial class Assisstant
 {
@@ -13,9 +13,5 @@ public partial class Assisstant
 
     public string MiddleName { get; set; } = null!;
 
-    public string LoginA { get; set; } = null!;
-
-    public string PasswordA { get; set; } = null!;
-
-    public bool RoleA { get; set; }
+    public virtual ICollection<Reserch> Reserches { get; set; } = new List<Reserch>();
 }

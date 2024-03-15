@@ -1,6 +1,8 @@
-﻿using System;
+﻿using RENTnew.BD;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,9 +21,14 @@ namespace RENTnew
     /// </summary>
     public partial class Reserachs : Window
     {
-        public Reserachs()
+        Patient _patient;
+        public Reserachs(Patient patient)
         {
             InitializeComponent();
+            this._patient = patient;
+
+            reserchDT.DataContext = Helper.db.Reserchs.Where(x=>x.PatientId == patient.Id).ToList();
+
         }
     }
 }

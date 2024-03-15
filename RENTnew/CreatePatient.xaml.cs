@@ -47,7 +47,7 @@ namespace RENTnew
             {
                 sex = true;
             }
-          
+
             Patient newPatients = new Patient {
                 Surname = surname.Text,
                 FirstName = firstNameTB.Text,
@@ -58,7 +58,9 @@ namespace RENTnew
                 Street = streetTextBox.Text,
                 Building = houseTextBox.Text,
                 Letter = letterTextBox.Text,
-                Appartaments = apartmentTextBox.Text
+                Appartaments = apartmentTextBox.Text,
+                CreateDate = DateTime.Today
+                
             };
 
             Helper.db.Patients.Add(newPatients);

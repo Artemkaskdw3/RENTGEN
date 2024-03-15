@@ -40,7 +40,7 @@ namespace RENTnew
                 return;
             }
             Patient a = patientDG.SelectedItem as Patient;
-            MessageBox.Show(a.FirstName);
+            new Reserachs(a).Show();
         }
 
         private void OpenBTN_Click(object sender, RoutedEventArgs e)
@@ -79,22 +79,27 @@ namespace RENTnew
         private void CreatePatient_Click(object sender, RoutedEventArgs e)
         {
             new CreatePatient().ShowDialog();
+            pageNumber = 1;
             PageDG(2);
         }
-
+        
         private void PageDG(int a)
         {
-            if (a == 1)
+            if (!Helper.db.Patients.OrderByDescending(x => x.CreateDate).Skip((pageNumber) * pageSize).Take(pageSize).ToList().IsNullOrEmpty())
             {
-                pageNumber++;
-            }
-            else if (pageNumber >= 1 && a == 0)
-            {
-                pageNumber--;
-            }
-            patientDG.DataContext = Helper.db.Patients.OrderByDescending(x => x.CreateDate).Skip((pageNumber) * pageSize).Take(pageSize).ToList();
-            numOfPageTB.Text = pageNumber.ToString();
 
+                if (a == 1)
+                {
+                    pageNumber++;
+                }
+                else if (pageNumber >= 1 && a == 0)
+                {
+                    pageNumber--;
+                }
+                patientDG.DataContext = Helper.db.Patients.OrderByDescending(x => x.CreateDate).Skip((pageNumber) * pageSize).Take(pageSize).ToList();
+                numOfPageTB.Text = pageNumber.ToString();
+
+            }
         }
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
