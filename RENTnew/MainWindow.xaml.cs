@@ -16,6 +16,7 @@ using System.Collections;
 using Microsoft.IdentityModel.Tokens;
 using System.Globalization;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using System.Collections.ObjectModel;
 
 namespace RENTnew
 {
@@ -35,23 +36,23 @@ namespace RENTnew
 
         private void patientDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (patientDG.SelectedItem == null)
+            var selectedPatient = patientDG.SelectedItem as Patient;
+            if (selectedPatient == null)
             {
                 return;
             }
-            Patient a = patientDG.SelectedItem as Patient;
-            new Reserachs(a).Show();
+            new Reserachs(selectedPatient).Show();
         }
-
         private void OpenBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (patientDG.SelectedItem == null)
+            var selectedPatient = patientDG.SelectedItem as Patient;
+            if (selectedPatient == null)
             {
                 return;
             }
-            Patient a = patientDG.SelectedItem as Patient;
-            MessageBox.Show(a.FirstName);
+            new Reserachs(selectedPatient).Show();
         }
+
         private void Filter_Click(object sender, RoutedEventArgs e)    //Метод для поиска пациентов 
         //Метод для поиска пациентов 
         {

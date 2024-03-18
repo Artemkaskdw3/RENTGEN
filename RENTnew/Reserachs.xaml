@@ -73,14 +73,8 @@
             </Button>
             <Button Height="30">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/images/icons8-plus-80.png" />
-                    <ContentControl Content="Создать" VerticalAlignment="Center"></ContentControl>
-                </StackPanel>
-            </Button>
-            <Button Height="30">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/images/icons8-plus-80.png" />
-                    <ContentControl Content="Создать" VerticalAlignment="Center"></ContentControl>
+                    <Image Source="/images/icons8-edit-80.png" />
+                    <ContentControl Content="Редактировать" VerticalAlignment="Center"></ContentControl>
                 </StackPanel>
             </Button>
         </StackPanel>
@@ -88,7 +82,7 @@
 
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Дата посещение" Binding="{Binding DateReserch, StringFormat='dd.MM.yyyy'}" Width="*" FontSize="15"/>
-                <DataGridTextColumn Header="Название исследования" Binding="{Binding ReserchsName.NameReserch}" Width="*" FontSize="15"/>
+                <DataGridTextColumn Header="Название исследования" Binding="{Binding NameRerserch}" Width="*" FontSize="15"/>
                 <DataGridTextColumn Header="Заключение" Binding="{Binding ResultId}" Width="*" FontSize="15"/>
             </DataGrid.Columns>
         </DataGrid>

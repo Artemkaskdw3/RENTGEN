@@ -1,4 +1,5 @@
-﻿using RENTnew.BD;
+﻿using Microsoft.EntityFrameworkCore;
+using RENTnew.BD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,8 @@ namespace RENTnew
         {
             InitializeComponent();
             this._patient = patient;
-
-            reserchDT.DataContext = Helper.db.Reserchs.Where(x=>x.PatientId == patient.Id).ToList();
+            reserchDT.DataContext = Helper.db.Reserchs.Include(x => x.NameRerserch);
+            reserchDT.DataContext = Helper.db.Reserchs.Where(x=>x.PatientId == patient.Id);
 
         }
     }
