@@ -31,26 +31,25 @@ namespace RENTnew
         {
             InitializeComponent();
             //Метод PageDG Если принимает значение 0 - значит идет переход на след. страницу Если 1 - то переход на предыдущию, а если 2 - ничего не происходит
+            Helper.db.Patients.Load();
             PageDG(2);
         }
 
         private void patientDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selectedPatient = patientDG.SelectedItem as Patient;
-            if (selectedPatient == null)
+            if (patientDG.SelectedItem is Patient selectedPatient)
             {
-                return;
+                new Reserachs(selectedPatient).ShowDialog();
             }
-            new Reserachs(selectedPatient).Show();
         }
         private void OpenBTN_Click(object sender, RoutedEventArgs e)
         {
-            var selectedPatient = patientDG.SelectedItem as Patient;
+            Patient selectedPatient = patientDG.SelectedItem as Patient;
             if (selectedPatient == null)
             {
                 return;
             }
-            new Reserachs(selectedPatient).Show();
+            new Reserachs(selectedPatient).ShowDialog();
         }
 
         private void Filter_Click(object sender, RoutedEventArgs e)    //Метод для поиска пациентов 
@@ -97,7 +96,7 @@ namespace RENTnew
                 {
                     pageNumber--;
                 }
-                patientDG.DataContext = Helper.db.Patients.OrderByDescending(x => x.CreateDate).Skip((pageNumber) * pageSize).Take(pageSize).ToList();
+                patientDG.ItemsSource = Helper.db.Patients.OrderByDescending(x => x.CreateDate).Skip((pageNumber) * pageSize).Take(pageSize).ToList();
                 numOfPageTB.Text = pageNumber.ToString();
 
             }
@@ -117,17 +116,17 @@ namespace RENTnew
 
                 DateTime a = new DateTime();
                 DateTime.TryParse(_maskedTextBox.Text, out a);
-                return patientDG.DataContext = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text) && x.Age == a).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
+                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text) && x.Age == a).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
             }
             else if (SearchTB.Text.IsNullOrEmpty() && _maskedTextBox.Text != "__.__.____")
             {
                 DateTime a = new DateTime();
                 DateTime.TryParse(_maskedTextBox.Text, out a);
-                return patientDG.DataContext = Helper.db.Patients.Where(x => x.Age == a).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
+                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Age == a).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
             }
             else
             {
-                return patientDG.DataContext = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text)).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
+                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text)).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
 
             }
         }
