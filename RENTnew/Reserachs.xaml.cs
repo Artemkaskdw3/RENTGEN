@@ -27,6 +27,7 @@ namespace RENTnew
         {
             InitializeComponent();
             this._patient = patient;
+            reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x =>x.Result).Where(x => x.PatientId == patient.Id).ToList();
 
         }
     }

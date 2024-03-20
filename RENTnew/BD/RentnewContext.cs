@@ -246,7 +246,7 @@ public partial class RentnewContext : DbContext
             entity.ToTable("ReserchsName");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.NameReserch)
+            entity.Property(e => e.NameRerserch)
                 .HasMaxLength(100)
                 .HasColumnName("nameReserch");
             entity.Property(e => e.Title)

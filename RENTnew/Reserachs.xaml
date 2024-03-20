@@ -48,6 +48,7 @@
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         
         <Menu Background="White" Grid.Row="0">
@@ -82,11 +83,16 @@
 
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Дата посещение" Binding="{Binding DateReserch, StringFormat='dd.MM.yyyy'}" Width="*" FontSize="15"/>
-                <DataGridTextColumn Header="Название исследования" Binding="{Binding NameRerserch}" Width="*" FontSize="15"/>
-                <DataGridTextColumn Header="Заключение" Binding="{Binding ResultId}" Width="*" FontSize="15"/>
+                <DataGridTextColumn Header="Название исследования" Binding="{Binding NameRerserch.NameRerserch}" Width="*" FontSize="15"/>
+                <DataGridTextColumn Header="Заключение" Binding="{Binding Result.NamePathologies}" Width="*" FontSize="15"/>
             </DataGrid.Columns>
         </DataGrid>
-        
 
+        <TabControl Grid.Row="3" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}">
+            <TabItem Header="Создание">
+                <TextBlock Text="sd"></TextBlock>
+            </TabItem>
+            <TabItem Header="Редактирование"></TabItem>
+        </TabControl>
     </Grid>
 </Window>

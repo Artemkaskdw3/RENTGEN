@@ -7,7 +7,7 @@ public partial class ReserchsName
 {
     public int Id { get; set; }
 
-    public string NameReserch { get; set; } = null!;
+    public string NameRerserch { get; set; } = null!;
 
     public int GroupId { get; set; }
 
