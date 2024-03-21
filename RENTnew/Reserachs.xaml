@@ -78,6 +78,12 @@
                     <ContentControl Content="Редактировать" VerticalAlignment="Center"></ContentControl>
                 </StackPanel>
             </Button>
+            <Button Height="30">
+            <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/icons8-trash-can-80.png" />
+                    <ContentControl Content="Удалить" VerticalAlignment="Center"></ContentControl>
+            </StackPanel>
+            </Button>
         </StackPanel>
         <DataGrid Margin="10,0,10,10" Name="reserchDT" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.Row="2" Background="#FFF9F9F9" AlternatingRowBackground="#E8E8E8" AlternationCount="2" IsReadOnly="True">
 
@@ -90,9 +96,11 @@
 
         <TabControl Grid.Row="3" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}">
             <TabItem Header="Создание">
-                <TextBlock Text="sd"></TextBlock>
+                <TextBlock Text="sd1"></TextBlock>
             </TabItem>
-            <TabItem Header="Редактирование"></TabItem>
+            <TabItem Header="Редактирование">
+                <TextBlock Text="sd1"></TextBlock>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
