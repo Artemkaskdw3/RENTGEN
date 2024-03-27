@@ -149,3 +149,5 @@ C:\Users\REAM\source\repos\RENTGEN\RENTnew\obj\Debug\net7.0-windows\EditPatient.
 C:\Users\REAM\source\repos\RENTGEN\RENTnew\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\REAM\source\repos\RENTGEN\RENTnew\obj\Debug\net7.0-windows\Reserachs.g.cs
 C:\Users\REAM\source\repos\RENTGEN\RENTnew\obj\Debug\net7.0-windows\Reserachs.baml
+C:\Users\REAM\source\repos\RENTGEN\RENTnew\obj\Debug\net7.0-windows\CreateReserch.g.cs
+C:\Users\REAM\source\repos\RENTGEN\RENTnew\obj\Debug\net7.0-windows\CreateReserch.baml

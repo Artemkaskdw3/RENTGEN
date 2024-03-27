@@ -1,0 +1,79 @@
+﻿<Window x:Class="RENTnew.CreateReserch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RENTnew" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="CreateReserch"   Height="900" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="Height" Value="50"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Trigger.Setters>
+                        <Setter Property="Foreground" Value="White" />
+                    </Trigger.Setters>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="0,5,0,0"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="0,5,5,0"></Setter>
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Создание нового исследования"  FontSize="25" HorizontalAlignment="Center" ></TextBlock>
+            <Line Margin="0,30,0,0"
+                 X1="0" Y1="0"
+                 X2="900" Y2="0"
+                 Stroke="LightSlateGray"
+                 StrokeThickness="4" >
+            </Line>     
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Дата создания:"></TextBlock>
+            <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="19" Mask="00/00/0000" Height="26" Grid.Row="8"/>
+            <StackPanel>
+                <TextBlock Text="Исследование"></TextBlock>
+                <TextBox Name="ReserchTB" TextChanged="ReserchTB_TextChanged"/>
+                <ListBox Name="ReserchLB" SelectionChanged="ReserchLB_SelectionChanged" />
+            </StackPanel>
+            <TextBlock Text="Количество снимков"></TextBlock>
+            <TextBlock Text="Плановое\Экстренное"></TextBlock>
+            <TextBlock Text="Амбулаторное\Стационарное"></TextBlock>
+            <TextBlock Text="Отделение"></TextBlock>
+            <TextBlock Text="ЛПУ прикрепления"></TextBlock>
+            <TextBlock Text="Врач"></TextBlock>
+            <TextBlock Text="Лаборант"></TextBlock>
+            <TextBlock Text="Заключение"></TextBlock>
+            <TextBlock Text="Доза"></TextBlock>
+
+
+        </StackPanel>
+    </Grid>
+</Window>

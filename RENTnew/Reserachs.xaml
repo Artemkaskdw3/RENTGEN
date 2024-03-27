@@ -66,7 +66,7 @@
             </MenuItem>
         </Menu>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,0">
-            <Button Height="30">
+            <Button Height="30" Name="createResBTN" Click="createResBTN_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/icons8-plus-80.png" />
                     <ContentControl Content="Создать" VerticalAlignment="Center"></ContentControl>
@@ -84,6 +84,12 @@
                     <ContentControl Content="Удалить" VerticalAlignment="Center"></ContentControl>
             </StackPanel>
             </Button>
+            <Button Height="30">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/images/icons8-back-80.png" />
+                    <ContentControl Content="Вернуться" VerticalAlignment="Center"></ContentControl>
+                </StackPanel>
+            </Button>
         </StackPanel>
         <DataGrid Margin="10,0,10,10" Name="reserchDT" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.Row="2" Background="#FFF9F9F9" AlternatingRowBackground="#E8E8E8" AlternationCount="2" IsReadOnly="True">
 
@@ -94,13 +100,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <TabControl Grid.Row="3" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}">
-            <TabItem Header="Создание">
-                <TextBlock Text="sd1"></TextBlock>
-            </TabItem>
-            <TabItem Header="Редактирование">
-                <TextBlock Text="sd1"></TextBlock>
-            </TabItem>
-        </TabControl>
+
+        <TextBlock Grid.Row="3" Name="PatientName"></TextBlock>
+      
     </Grid>
 </Window>

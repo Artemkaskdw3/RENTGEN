@@ -39,7 +39,7 @@ namespace RENTnew
         {
             if (patientDG.SelectedItem is Patient selectedPatient)
             {
-                new Reserachs(selectedPatient).ShowDialog();
+                new Reserachs(selectedPatient).Show();
             }
         }
         private void OpenBTN_Click(object sender, RoutedEventArgs e)
@@ -49,7 +49,7 @@ namespace RENTnew
             {
                 return;
             }
-            new Reserachs(selectedPatient).ShowDialog();
+            new Reserachs(selectedPatient).Show();
         }
 
         private void Filter_Click(object sender, RoutedEventArgs e)    //Метод для поиска пациентов 

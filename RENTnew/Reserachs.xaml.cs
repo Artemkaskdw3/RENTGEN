@@ -30,5 +30,10 @@ namespace RENTnew
             reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x =>x.Result).Where(x => x.PatientId == patient.Id).ToList();
 
         }
+
+        private void createResBTN_Click(object sender, RoutedEventArgs e)
+        {
+            new CreateReserch().ShowDialog();
+        }
     }
 }

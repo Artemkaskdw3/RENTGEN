@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\icons8-back-80.png" />
     <None Remove="images\icons8-close-80.png" />
     <None Remove="images\icons8-delete-60.png" />
     <None Remove="images\icons8-edit-80.png" />
@@ -36,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\icons8-back-80.png" />
     <Resource Include="images\icons8-close-80.png" />
     <Resource Include="images\icons8-edit-80.png" />
     <Resource Include="images\icons8-opened-folder-80.png" />
