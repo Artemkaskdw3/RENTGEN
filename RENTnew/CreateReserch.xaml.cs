@@ -23,7 +23,8 @@ namespace RENTnew
         public CreateReserch()
         {
             InitializeComponent();
-            
+            ReserchLB.Visibility = Visibility.Collapsed;
+
         }
 
         private void ReserchLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -32,19 +33,22 @@ namespace RENTnew
             {
                 string selectedText = ReserchLB.SelectedItem.ToString();
                 ReserchTB.Text = selectedText;
+                ReserchLB.Visibility = Visibility.Collapsed;
+
+
             }
         }
 
         private void ReserchTB_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = ReserchTB.Text;
-            // Здесь проводим поиск похожих записей на основе введенного текста и обновляем содержимое ListBox
+            ReserchLB.Visibility = Visibility.Visible;  
             ReserchLB.ItemsSource = GetSimilarEntries(searchText);
         }
         private List<string> GetSimilarEntries(string searchText)
         {
             List<string> similarEntries = new List<string>();
-            similarEntries = Helper.db.Reserchs.Where(x=>x.NameRerserch.NameRerserch.Contains(searchText)).ToList();
+            similarEntries = Helper.db.ReserchsNames.Where(x => x.NameRerserch.Contains(searchText)).Select(x => x.NameRerserch).ToList(); 
             return similarEntries;
         }
     }

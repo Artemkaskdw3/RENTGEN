@@ -61,7 +61,7 @@
             <StackPanel>
                 <TextBlock Text="Исследование"></TextBlock>
                 <TextBox Name="ReserchTB" TextChanged="ReserchTB_TextChanged"/>
-                <ListBox Name="ReserchLB" SelectionChanged="ReserchLB_SelectionChanged" />
+                <ListBox Name="ReserchLB" ItemsSource="{Binding}" SelectionChanged="ReserchLB_SelectionChanged" />
             </StackPanel>
             <TextBlock Text="Количество снимков"></TextBlock>
             <TextBlock Text="Плановое\Экстренное"></TextBlock>
