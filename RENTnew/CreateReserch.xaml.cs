@@ -23,33 +23,23 @@ namespace RENTnew
         public CreateReserch()
         {
             InitializeComponent();
-            ReserchLB.Visibility = Visibility.Collapsed;
-
         }
 
-        private void ReserchLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ReserchLB.SelectedItem != null)
-            {
-                string selectedText = ReserchLB.SelectedItem.ToString();
-                ReserchTB.Text = selectedText;
-                ReserchLB.Visibility = Visibility.Collapsed;
-
-
-            }
-        }
-
-        private void ReserchTB_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string searchText = ReserchTB.Text;
-            ReserchLB.Visibility = Visibility.Visible;  
-            ReserchLB.ItemsSource = GetSimilarEntries(searchText);
-        }
         private List<string> GetSimilarEntries(string searchText)
         {
             List<string> similarEntries = new List<string>();
             similarEntries = Helper.db.ReserchsNames.Where(x => x.NameRerserch.Contains(searchText)).Select(x => x.NameRerserch).ToList(); 
             return similarEntries;
         }
+
+
+        private void ComboboxTest_KeyUp(object sender, KeyEventArgs e)
+        {
+            string searchText = ComboboxTest.Text;
+            ComboboxTest.ItemsSource = GetSimilarEntries(searchText);
+            ComboboxTest.IsDropDownOpen = true;
+        }
+
+        
     }
 }
