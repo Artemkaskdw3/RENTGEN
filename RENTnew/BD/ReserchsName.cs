@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RENTnew.BD;
+namespace RENTnew;
 
 public partial class ReserchsName
 {
     public int Id { get; set; }
 
-    public string NameRerserch { get; set; } = null!;
+    public string NameReserch { get; set; } = null!;
 
     public int GroupId { get; set; }
 

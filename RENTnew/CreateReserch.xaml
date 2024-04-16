@@ -56,39 +56,59 @@
             </Line>     
         </StackPanel>
         <StackPanel Grid.Row="1" Margin="10">
-            <TextBlock Text="Дата создания:"></TextBlock>
+            <TextBlock Text="Дата исследования:"></TextBlock>
             <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="19" Mask="00/00/0000" Height="26" Grid.Row="8" FontFamily="Arial"/>
             
             <TextBlock Text="Исследование"></TextBlock>
-            <ComboBox Name="ComboboxRes" FontFamily="Arial" FontSize="19" IsEditable="True" KeyUp="ComboboxTest_KeyUp" Height="25" MaxDropDownHeight="125"></ComboBox>  
-
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="50" Name="ReserchTBox" TextChanged="ReserchTB_TextChanged"></TextBox>
+                <TextBlock Name="ReserchTBlock" HorizontalAlignment="Left" Margin="10,0,0,0"></TextBlock>
+            </StackPanel>
+            
             <TextBlock Text="Количество снимков"></TextBlock>
             <xctk:IntegerUpDown FontSize="20" FontFamily="Arial" Height="25" Width="50" HorizontalAlignment="Left" AllowTextInput="False"></xctk:IntegerUpDown>
             
             <TextBlock Text="Плановое\Экстренное"></TextBlock>
-            <RadioButton GroupName="Emrg" Content="Плановое" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
-            <RadioButton GroupName="Emrg" Content="Экстренное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton GroupName="Emrg" Name="Planovaya" Content="Плановое" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton GroupName="Emrg" Name="Emergency"  Content="Экстренное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
             
             <TextBlock Text="Амбулаторное\Стационарное"></TextBlock>
-            <RadioButton GroupName="InOut" Content="Амбулаторное" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
-            <RadioButton GroupName="InOut" Content="Стационарное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton GroupName="InOut" Name="Ambulator"  Content="Амбулаторное" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton GroupName="InOut" Name="Stacionar"  Content="Стационарное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
 
-            <TextBlock Text="Отделение"></TextBlock>
-            <ComboBox Name="ComboboxDep" FontFamily="Arial" FontSize="19" IsEditable="True" KeyUp="ComboboxTest_KeyUp" Height="25" MaxDropDownHeight="125"></ComboBox>
-           
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="50"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0"></TextBlock>
+            </StackPanel>
+
+
             <TextBlock Text="ЛПУ прикрепления"></TextBlock>
-            <ComboBox Name="ComboboxHCF" FontFamily="Arial" FontSize="19" IsEditable="True" KeyUp="ComboboxTest_KeyUp" Height="25" MaxDropDownHeight="125"></ComboBox>
-
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="50"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0"></TextBlock>
+            </StackPanel>
+            
             <TextBlock Text="Врач"></TextBlock>
-            <ComboBox Name="ComboboxDoc" FontFamily="Arial" FontSize="19" IsEditable="True" KeyUp="ComboboxTest_KeyUp" Height="25" MaxDropDownHeight="125"></ComboBox>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="50"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0"></TextBlock>
+            </StackPanel>
 
             <TextBlock Text="Лаборант"></TextBlock>
-            <ComboBox Name="ComboboxLab" FontFamily="Arial" FontSize="19" IsEditable="True" KeyUp="ComboboxTest_KeyUp" Height="25" MaxDropDownHeight="125"></ComboBox>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="50"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0"></TextBlock>
+            </StackPanel>
 
             <TextBlock Text="Заключение"></TextBlock>
-            <ComboBox Name="ComboboxResult" FontFamily="Arial" FontSize="19" IsEditable="True" KeyUp="ComboboxTest_KeyUp" Height="25" MaxDropDownHeight="125"></ComboBox>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="50"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0"></TextBlock>
+            </StackPanel>
 
             <TextBlock Text="Доза"></TextBlock>
+            <xctk:DecimalUpDown FormatString="F" Value="1564.6749586" Increment=".001"  Maximum="200000.599" />
+
         </StackPanel>
     </Grid>
 </Window>

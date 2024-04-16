@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace RENTnew.BD;
+namespace RENTnew;
 
 public partial class RentnewContext : DbContext
 {
@@ -57,6 +57,9 @@ public partial class RentnewContext : DbContext
             entity.Property(e => e.Surname)
                 .HasMaxLength(100)
                 .HasColumnName("surname");
+            entity.Property(e => e.Title)
+                .HasMaxLength(50)
+                .HasColumnName("title");
         });
 
         modelBuilder.Entity<Departament>(entity =>
@@ -90,6 +93,9 @@ public partial class RentnewContext : DbContext
             entity.Property(e => e.Surname)
                 .HasMaxLength(100)
                 .HasColumnName("surname");
+            entity.Property(e => e.Title)
+                .HasMaxLength(50)
+                .HasColumnName("title");
         });
 
         modelBuilder.Entity<GroupingReserch>(entity =>
@@ -246,7 +252,7 @@ public partial class RentnewContext : DbContext
             entity.ToTable("ReserchsName");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.NameRerserch)
+            entity.Property(e => e.NameReserch)
                 .HasMaxLength(100)
                 .HasColumnName("nameReserch");
             entity.Property(e => e.Title)

@@ -95,7 +95,7 @@
 
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Дата посещение" Binding="{Binding DateReserch, StringFormat='dd.MM.yyyy'}" Width="*" FontSize="15"/>
-                <DataGridTextColumn Header="Название исследования" Binding="{Binding NameRerserch.NameRerserch}" Width="*" FontSize="15"/>
+                <DataGridTextColumn Header="Название исследования" Binding="{Binding NameRerserch.NameReserch}" Width="*" FontSize="15"/>
                 <DataGridTextColumn Header="Заключение" Binding="{Binding Result.NamePathologies}" Width="*" FontSize="15"/>
             </DataGrid.Columns>
         </DataGrid>
