@@ -33,7 +33,13 @@ namespace RENTnew
 
         private void createResBTN_Click(object sender, RoutedEventArgs e)
         {
-            new CreateReserch().ShowDialog();
+            new CreateReserch(_patient).ShowDialog();
+        }
+
+        private void BackBTN_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
         }
     }
 }

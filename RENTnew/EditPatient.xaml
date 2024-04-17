@@ -121,7 +121,7 @@
 
         <StackPanel Grid.Row="21" Margin="20">
             <Button Content="Редактировать" Name="Create" Click="Create_Click" ></Button>
-            <Button Content="Отмена"></Button>
+            <Button Content="Отмена" Name="Back" Click="Back_Click"></Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -25,7 +25,7 @@ namespace RENTnew
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int pageNumber = 1;
+        private int pageNumber = 0;
         private int pageSize = 20;
         public MainWindow()
         {
@@ -40,65 +40,80 @@ namespace RENTnew
             if (patientDG.SelectedItem is Patient selectedPatient)
             {
                 new Reserachs(selectedPatient).Show();
+                this.Close();
             }
         }
         private void OpenBTN_Click(object sender, RoutedEventArgs e)
         {
-            Patient selectedPatient = patientDG.SelectedItem as Patient;
-            if (selectedPatient == null)
+            if (patientDG.SelectedItem is Patient selectedPatient)
             {
-                return;
+                new Reserachs(selectedPatient).Show();
+                this.Close();
             }
-            new Reserachs(selectedPatient).Show();
         }
 
         private void Filter_Click(object sender, RoutedEventArgs e)    //Метод для поиска пациентов 
         //Метод для поиска пациентов 
         {
             //Метод для поиска пациентов 
-            SearchDataGrid();
-            pageNumber = 1;
-            numOfPageTB.Text = pageNumber.ToString();
+            if (SearchTB.Text.IsNullOrEmpty() && _maskedTextBox.Text == "__.__.____")
+            {
+                MessageBox.Show("Поля пустые");
+            }
+            else { 
+                SearchDataGrid();
+            }
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)  //Метод для поиска пациентов 
         {
             SearchTB.Text = "";
             _maskedTextBox.Text = "";
-            SearchDataGrid();
-            pageNumber = 1;
+            PageDG(2);
             numOfPageTB.Text = pageNumber.ToString();
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            new EditPatient(patientDG.SelectedItem as Patient).ShowDialog();
-            PageDG(2);
+            if (patientDG.SelectedItem is Patient selectedPatient)
+            {
+                new EditPatient(patientDG.SelectedItem as Patient).ShowDialog();
+                PageDG(2);
+            }
+            else
+            {
+                MessageBox.Show("Не выбран пациент");
+            }
 
         }
         private void CreatePatient_Click(object sender, RoutedEventArgs e)
         {
             new CreatePatient().ShowDialog();
-            pageNumber = 1;
+            pageNumber = 0;
             PageDG(2);
         }
         
         private void PageDG(int a)
         {
-            if (!Helper.db.Patients.OrderByDescending(x => x.CreateDate).Skip((pageNumber) * pageSize).Take(pageSize).ToList().IsNullOrEmpty())
+            if (!Helper.db.Patients.Any())
             {
+                // Handle case when there are no patients in the database
+            }
+            else
+            {
+                var totalPages = (int)Math.Ceiling(Helper.db.Patients.Count() / (double)pageSize);
 
-                if (a == 1)
+                if (a == 1 && pageNumber < totalPages - 1)
                 {
                     pageNumber++;
                 }
-                else if (pageNumber >= 1 && a == 0)
+                else if (pageNumber > 0 && a == 0)
                 {
                     pageNumber--;
                 }
+
                 patientDG.ItemsSource = Helper.db.Patients.OrderByDescending(x => x.CreateDate).Skip((pageNumber) * pageSize).Take(pageSize).ToList();
                 numOfPageTB.Text = pageNumber.ToString();
-
             }
         }
         private void btnNext_Click(object sender, RoutedEventArgs e)
@@ -111,29 +126,27 @@ namespace RENTnew
         }
         private object SearchDataGrid()
         {
+           
             if (!SearchTB.Text.IsNullOrEmpty() && _maskedTextBox.Text != "__.__.____")
             {
 
                 DateTime a = new DateTime();
                 DateTime.TryParse(_maskedTextBox.Text, out a);
-                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text) && x.Age == a).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
+                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text) && x.Age == a).Skip((pageNumber) * pageSize).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
             }
             else if (SearchTB.Text.IsNullOrEmpty() && _maskedTextBox.Text != "__.__.____")
             {
                 DateTime a = new DateTime();
                 DateTime.TryParse(_maskedTextBox.Text, out a);
-                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Age == a).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
+                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Age == a).Skip((pageNumber) * pageSize).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
             }
             else
             {
-                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text)).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
-
+                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text)).Skip((pageNumber) * pageSize).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
             }
+         
+            
         }
 
-        private void patientDG_Sorting(object sender, DataGridSortingEventArgs e)
-        {
-
-        }
     }      
 }

@@ -22,8 +22,10 @@ namespace RENTnew
     /// </summary>
     public partial class CreateReserch : Window
     {
-        public CreateReserch()
+        Patient _patient;
+        public CreateReserch(Patient patient)
         {
+            this._patient = patient;
             InitializeComponent();
         }
 
@@ -104,6 +106,122 @@ namespace RENTnew
             {
                 ReserchTBlock.Text = "Ничего не найдено";
             }
+        }
+
+        private void DepTBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var dep = Helper.db.Departaments.FirstOrDefault(x => x.Title == DepTBox.Text);
+            if (dep != null && !dep.NameDep.IsNullOrEmpty())
+            {
+                DepTBlock.Text = dep.NameDep;
+
+            }
+            else
+            {
+                DepTBlock.Text = "Ничего не найдено";
+            }
+        }
+
+        private void HCFTBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var hcf = Helper.db.HeathCfs.FirstOrDefault(x => x.Title == HCFTBox.Text);
+            if (hcf != null && !hcf.NameHcf.IsNullOrEmpty())
+            {
+                HCFTBlock.Text = hcf.NameHcf;
+
+            }
+            else
+            {
+                HCFTBlock.Text = "Ничего не найдено";
+            }
+        }
+
+        private void DocTBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var Doc = Helper.db.Doctors.FirstOrDefault(x => x.Title == DocTBox.Text);
+            if (Doc != null && !Doc.FirstName.IsNullOrEmpty())
+            {
+                DocTBlock.Text = Doc.Surname +" "+ Doc.FirstName +" "+ Doc.MiddleName;
+
+            }
+            else
+            {
+                DocTBlock.Text = "Ничего не найдено";
+            }
+        }
+
+        private void AssistTBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var Assist = Helper.db.Assisstants.FirstOrDefault(x => x.Title == AssistTBox.Text);
+            if (Assist != null && !Assist.FirstName.IsNullOrEmpty())
+            {
+                AssistTBlock.Text = Assist.Surname + " " + Assist.FirstName + " " + Assist.MiddleName;
+
+            }
+            else
+            {
+                AssistTBlock.Text = "Ничего не найдено";
+            }
+        }
+
+        private void ResultTBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var Result = Helper.db.Pathologies.FirstOrDefault(x => x.Title == ResultTBox.Text);
+            if (Result != null && !Result.NamePathologies.IsNullOrEmpty())
+            {
+                ResultTBlock.Text = Result.NamePathologies;
+
+            }
+            else
+            {
+                ResultTBlock.Text = "Ничего не найдено";
+            }
+        }
+
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+            // True - Плановая False- Экстр в БАЗЕ ДАННЫХ!!!!!!!
+            // True - Амбулатор False- Стационар в БАЗЕ ДАННЫХ!!!!!!!
+
+            bool planOrEmerg = false;
+            bool inPatOutPat= false;
+
+            if (Planovaya.IsChecked == true)
+            {
+                planOrEmerg = true;
+            }
+            if (Ambulator.IsChecked == true)
+            {
+                inPatOutPat = true;
+            }
+            DateTime a = new DateTime();
+            DateTime.TryParse(_maskedTextBox.Text, out a);
+            Reserch newReserch = new Reserch
+            {
+                DateReserch = a,
+                NameRerserchId = Helper.db.ReserchsNames.FirstOrDefault(x => x.Title == ReserchTBox.Text).Id,
+                NumOfPicture = int.Parse(PictureTBox.Text),
+                PlanOrEmerg = planOrEmerg,
+                InpatientOutpatient = inPatOutPat,
+                DepartamentId = Helper.db.Departaments.FirstOrDefault(x => x.Title == DepTBox.Text).Id,
+                Hcfid = Helper.db.HeathCfs.FirstOrDefault(x => x.Title == HCFTBox.Text).Id,
+                DoctorId = Helper.db.Doctors.FirstOrDefault(x => x.Title == DocTBox.Text).Id,
+                PatientId = _patient.Id,
+                Assisstant = Helper.db.Assisstants.FirstOrDefault(x => x.Title == AssistTBox.Text).Id,
+                ResultId = Helper.db.Pathologies.FirstOrDefault(x => x.Title == ReserchTBox.Text).Id,
+                Dose = decimal.Parse(_maskedTextBoxDose.Text)
+
+            };
+
+            Helper.db.Reserchs.Add(newReserch);
+
+            Helper.db.SaveChanges();
+            this.Close();
+        }
+
+        private void BackBTN_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

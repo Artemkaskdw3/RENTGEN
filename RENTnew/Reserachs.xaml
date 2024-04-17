@@ -84,7 +84,7 @@
                     <ContentControl Content="Удалить" VerticalAlignment="Center"></ContentControl>
             </StackPanel>
             </Button>
-            <Button Height="30">
+            <Button Height="30" Name="Backdown" Click="BackBTN_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/images/icons8-back-80.png" />
                     <ContentControl Content="Вернуться" VerticalAlignment="Center"></ContentControl>

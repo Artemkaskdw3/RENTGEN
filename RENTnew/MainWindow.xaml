@@ -141,7 +141,7 @@
                             <ContentControl Content="Редактировать" VerticalAlignment="Center" ></ContentControl>
                         </StackPanel>
                     </Button>
-                    <Button FontSize="15">
+                    <Button FontSize="15" Name="UdateBTN" Click="Update_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/images/icons8-refresh-80.png" />
                             <ContentControl Content="Обновить" VerticalAlignment="Center"></ContentControl>

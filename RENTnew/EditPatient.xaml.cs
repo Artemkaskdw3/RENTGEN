@@ -21,6 +21,7 @@ namespace RENTnew
     public partial class EditPatient : Window
     {
         Patient _patient;
+        // ЖЕНСКИЙ ЭТО FALSE МУЖСКОЙ ЭТО TRUE
         public EditPatient(Patient patient)
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace RENTnew
             firstNameTB.Text = patient.FirstName;
             middleNameTB.Text = patient.MiddleName;
             _maskedTextBox.Text = patient.Age.ToShortDateString();
-            sexCB.SelectedIndex = 1;
+            sexCB.SelectedIndex = patient.Sex ? 1 : 0;
             cityTextBox.Text = patient.City;
             streetTextBox.Text = patient.Street;
             houseTextBox.Text = patient.Building;
@@ -59,6 +60,11 @@ namespace RENTnew
             Helper.db.SaveChanges();
             this.Close();
 
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
