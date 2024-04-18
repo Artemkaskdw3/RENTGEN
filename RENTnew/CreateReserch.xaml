@@ -76,12 +76,12 @@
             <xctk:IntegerUpDown FontSize="20" FontFamily="Arial" Height="25" Width="50" HorizontalAlignment="Left" AllowTextInput="False" Name="PictureTBox"></xctk:IntegerUpDown>
             
             <TextBlock Text="Плановое\Экстренное"></TextBlock>
-            <RadioButton GroupName="Emrg" Name="Planovaya" Content="Плановое" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
-            <RadioButton GroupName="Emrg" Name="Emergency"  Content="Экстренное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton GroupName="Emrg" Name="Planovaya" Checked="Planovaya_Checked" Content="Плановое" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton GroupName="Emrg" Name="Emergency" Checked="Emergency_Checked" Content="Экстренное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
             
             <TextBlock Text="Амбулаторное\Стационарное"></TextBlock>
-            <RadioButton GroupName="InOut" Name="Ambulator"  Content="Амбулаторное" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
-            <RadioButton GroupName="InOut" Name="Stacionar"  Content="Стационарное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton GroupName="InOut" Name="Ambulator" Checked="Ambulator_Checked"  Content="Амбулаторное" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton GroupName="InOut" Name="Stacionar" Checked="Stacionar_Checked" Content="Стационарное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
 
             <TextBlock Text="Отделение"></TextBlock>
             <StackPanel Orientation="Horizontal">

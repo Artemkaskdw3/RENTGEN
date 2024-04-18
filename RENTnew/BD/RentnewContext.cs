@@ -217,7 +217,6 @@ public partial class RentnewContext : DbContext
 
             entity.HasOne(d => d.Departament).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.DepartamentId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Reserchs__depart__4BAC3F29");
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.Reserches)

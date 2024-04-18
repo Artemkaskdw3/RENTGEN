@@ -183,33 +183,28 @@ namespace RENTnew
             // True - Плановая False- Экстр в БАЗЕ ДАННЫХ!!!!!!!
             // True - Амбулатор False- Стационар в БАЗЕ ДАННЫХ!!!!!!!
 
-            bool planOrEmerg = false;
-            bool inPatOutPat= false;
 
-            if (Planovaya.IsChecked == true)
+            
+           
+            if (true)
             {
-                planOrEmerg = true;
-            }
-            if (Ambulator.IsChecked == true)
-            {
-                inPatOutPat = true;
-            }
+
             DateTime a = new DateTime();
             DateTime.TryParse(_maskedTextBox.Text, out a);
-            Reserch newReserch = new Reserch
-            {
-                DateReserch = a,
-                NameRerserchId = Helper.db.ReserchsNames.FirstOrDefault(x => x.Title == ReserchTBox.Text).Id,
-                NumOfPicture = int.Parse(PictureTBox.Text),
-                PlanOrEmerg = planOrEmerg,
-                InpatientOutpatient = inPatOutPat,
-                DepartamentId = Helper.db.Departaments.FirstOrDefault(x => x.Title == DepTBox.Text).Id,
-                Hcfid = Helper.db.HeathCfs.FirstOrDefault(x => x.Title == HCFTBox.Text).Id,
-                DoctorId = Helper.db.Doctors.FirstOrDefault(x => x.Title == DocTBox.Text).Id,
-                PatientId = _patient.Id,
-                Assisstant = Helper.db.Assisstants.FirstOrDefault(x => x.Title == AssistTBox.Text).Id,
-                ResultId = Helper.db.Pathologies.FirstOrDefault(x => x.Title == ReserchTBox.Text).Id,
-                Dose = decimal.Parse(_maskedTextBoxDose.Text)
+                Reserch newReserch = new Reserch
+                {
+                    DateReserch = a,
+                    NameRerserchId = Helper.db.ReserchsNames.FirstOrDefault(x => x.Title == ReserchTBox.Text).Id,
+                    NumOfPicture = int.Parse(PictureTBox.Text),
+                    PlanOrEmerg = Planovaya.IsChecked.Value ? Emergency.IsChecked.Value : null,
+                    InpatientOutpatient = Ambulator.IsChecked.Value ? Stacionar.IsChecked.Value : null,
+                    DepartamentId = Helper.db.Departaments.Any(x => x.Title == DepTBox.Text) ? Helper.db.Departaments.FirstOrDefault(x => x.Title == DepTBox.Text).Id : null,
+                    Hcfid = Helper.db.HeathCfs.Any(x => x.Title == HCFTBox.Text) ? Helper.db.HeathCfs.FirstOrDefault(x => x.Title == HCFTBox.Text).Id : null,
+                    DoctorId = Helper.db.Doctors.FirstOrDefault(x => x.Title == DocTBox.Text).Id,
+                    PatientId = _patient.Id,
+                    Assisstant = Helper.db.Assisstants.FirstOrDefault(x => x.Title == AssistTBox.Text).Id,
+                    ResultId = Helper.db.Pathologies.FirstOrDefault(x => x.Title == ReserchTBox.Text).Id,
+                    Dose = decimal.Parse(_maskedTextBoxDose.Text)
 
             };
 
@@ -217,11 +212,50 @@ namespace RENTnew
 
             Helper.db.SaveChanges();
             this.Close();
+            }
         }
 
         private void BackBTN_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Ambulator_Checked(object sender, RoutedEventArgs e)
+        {
+            
+                HCFTBox.IsEnabled = false;
+                DepTBox.IsEnabled = true;
+                HCFTBox.Clear();
+
+
+        }
+
+        private void Stacionar_Checked(object sender, RoutedEventArgs e)
+        {
+            HCFTBox.IsEnabled = true;
+            DepTBox.IsEnabled = false;
+            DepTBox.Clear();
+
+
+        }
+
+        private void Planovaya_Checked(object sender, RoutedEventArgs e)
+        {
+            HCFTBox.IsEnabled = true;
+            Ambulator.IsEnabled = true;
+            Stacionar.IsEnabled = true;
+        }
+
+        private void Emergency_Checked(object sender, RoutedEventArgs e)
+        {
+            HCFTBox.IsEnabled = false;
+            DepTBox.IsEnabled = true;
+            Ambulator.IsEnabled = false;
+            Stacionar.IsEnabled = false;
+            Stacionar.IsChecked = false;
+            Ambulator.IsChecked = false;
+
+
         }
     }
 }

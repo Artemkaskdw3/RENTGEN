@@ -34,6 +34,8 @@ namespace RENTnew
         private void createResBTN_Click(object sender, RoutedEventArgs e)
         {
             new CreateReserch(_patient).ShowDialog();
+            reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x => x.Result).Where(x => x.PatientId == _patient.Id).ToList();
+
         }
 
         private void BackBTN_Click(object sender, RoutedEventArgs e)

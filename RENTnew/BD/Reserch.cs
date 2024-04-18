@@ -17,7 +17,7 @@ public partial class Reserch
 
     public bool? InpatientOutpatient { get; set; }
 
-    public int DepartamentId { get; set; }
+    public int? DepartamentId { get; set; }
 
     public int? Hcfid { get; set; }
 
@@ -33,7 +33,7 @@ public partial class Reserch
 
     public virtual Assisstant? AssisstantNavigation { get; set; }
 
-    public virtual Departament Departament { get; set; } = null!;
+    public virtual Departament? Departament { get; set; }
 
     public virtual Doctor Doctor { get; set; } = null!;
 
