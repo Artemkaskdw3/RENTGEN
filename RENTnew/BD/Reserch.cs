@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RENTnew;
+namespace RENTnew.BD;
 
 public partial class Reserch
 {
@@ -13,7 +13,7 @@ public partial class Reserch
 
     public int NumOfPicture { get; set; }
 
-    public bool PlanOrEmerg { get; set; }
+    public bool? PlanOrEmerg { get; set; }
 
     public bool? InpatientOutpatient { get; set; }
 

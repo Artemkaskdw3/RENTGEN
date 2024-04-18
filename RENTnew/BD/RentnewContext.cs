@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace RENTnew;
+namespace RENTnew.BD;
 
 public partial class RentnewContext : DbContext
 {

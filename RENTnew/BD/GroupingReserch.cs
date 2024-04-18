@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RENTnew;
+namespace RENTnew.BD;
 
 public partial class GroupingReserch
 {

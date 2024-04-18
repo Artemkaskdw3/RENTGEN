@@ -2,6 +2,7 @@
 using RENTnew.BD;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -141,7 +142,7 @@ namespace RENTnew
             var Doc = Helper.db.Doctors.FirstOrDefault(x => x.Title == DocTBox.Text);
             if (Doc != null && !Doc.FirstName.IsNullOrEmpty())
             {
-                DocTBlock.Text = Doc.Surname +" "+ Doc.FirstName +" "+ Doc.MiddleName;
+                DocTBlock.Text = Doc.Surname + " " + Doc.FirstName + " " + Doc.MiddleName;
 
             }
             else
@@ -184,9 +185,9 @@ namespace RENTnew
             // True - Амбулатор False- Стационар в БАЗЕ ДАННЫХ!!!!!!!
 
 
-            
-           
-            if (true)
+
+
+            if (!ReserchTBlock.Text.IsNullOrEmpty() && !DocTBlock.Text.IsNullOrEmpty() && !AssistTBlock.Text.IsNullOrEmpty() && !ReserchTBlock.Text.IsNullOrEmpty() && !_maskedTextBoxDose.Text.IsNullOrEmpty() )
             {
 
             DateTime a = new DateTime();
@@ -196,7 +197,7 @@ namespace RENTnew
                     DateReserch = a,
                     NameRerserchId = Helper.db.ReserchsNames.FirstOrDefault(x => x.Title == ReserchTBox.Text).Id,
                     NumOfPicture = int.Parse(PictureTBox.Text),
-                    PlanOrEmerg = Planovaya.IsChecked.Value ? Emergency.IsChecked.Value : null,
+                    PlanOrEmerg = Planovaya.IsChecked.Value ? Emergency.IsChecked.Value : false,
                     InpatientOutpatient = Ambulator.IsChecked.Value ? Stacionar.IsChecked.Value : null,
                     DepartamentId = Helper.db.Departaments.Any(x => x.Title == DepTBox.Text) ? Helper.db.Departaments.FirstOrDefault(x => x.Title == DepTBox.Text).Id : null,
                     Hcfid = Helper.db.HeathCfs.Any(x => x.Title == HCFTBox.Text) ? Helper.db.HeathCfs.FirstOrDefault(x => x.Title == HCFTBox.Text).Id : null,
@@ -207,11 +208,16 @@ namespace RENTnew
                     Dose = decimal.Parse(_maskedTextBoxDose.Text)
 
             };
+            
 
             Helper.db.Reserchs.Add(newReserch);
 
             Helper.db.SaveChanges();
             this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Не все поля заполнены!");
             }
         }
 
