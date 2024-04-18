@@ -43,5 +43,26 @@ namespace RENTnew
             new MainWindow().Show();
             this.Close();
         }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (reserchDT.SelectedItem is Reserch selectedRes)
+            {
+                var resultMB = MessageBox.Show("Вы уверены что хотите удалить","Сообщение", MessageBoxButton.YesNo);
+                if (resultMB == MessageBoxResult.Yes)
+                {
+                    Helper.db.Reserchs.Remove(selectedRes);
+                    Helper.db.SaveChanges();
+                    MessageBox.Show("Исследование успешно удалено");
+                    reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x => x.Result).Where(x => x.PatientId == _patient.Id).ToList();
+                }
+            }
+            else {
+                MessageBox.Show("Исследование для удаления не выбрано");
+            }
+
+
+          
+        }
     }
 }

@@ -148,5 +148,30 @@ namespace RENTnew
             
         }
 
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            Patient patient = (Patient)patientDG.SelectedItem;
+            if (patientDG.SelectedItem is Patient selectedRes)
+            {
+                var resultMB = MessageBox.Show("Вы уверены что хотите удалить", "Сообщение", MessageBoxButton.YesNo);
+                if (resultMB == MessageBoxResult.Yes && !Helper.db.Reserchs.Any(x=>x.PatientId == patient.Id))
+                {
+                    Helper.db.Patients.Remove(selectedRes);
+                    Helper.db.SaveChanges();
+                    MessageBox.Show("Пациент успешно удален");
+                    PageDG(2);
+                }
+                else
+                {
+                    MessageBox.Show("Необходимо удалить все исследования!");
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Исследование для удаления не выбрано");
+            }
+
+        }
     }      
 }

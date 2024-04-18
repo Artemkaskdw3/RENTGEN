@@ -147,7 +147,7 @@
                             <ContentControl Content="Обновить" VerticalAlignment="Center"></ContentControl>
                         </StackPanel>
                     </Button>
-                    <Button FontSize="15" >
+                    <Button FontSize="15" x:Name="Delete" Click="Delete_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/images/icons8-trash-can-80.png" />
                             <ContentControl Content="Удалить" VerticalAlignment="Center"></ContentControl>
