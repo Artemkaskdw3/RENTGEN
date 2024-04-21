@@ -109,10 +109,20 @@
 
             <TextBlock Text="Заключение"></TextBlock>
             <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" Margin="0,0,10,0" Text="Орган:" Style="{StaticResource TextBlockForView}"></TextBlock>
+
+                <TextBox Width="50" Name="PartOfBodyTBox" TextChanged="PartOfBodyTBox_TextChanged"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Name="PartOfBodyTBlock" Style="{StaticResource TextBlockForView}"></TextBlock>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" Margin="0,0,10,0" Text="Паталогия:" Style="{StaticResource TextBlockForView}"></TextBlock>
+
                 <TextBox Width="50" Name="ResultTBox" TextChanged="ResultTBox_TextChanged"></TextBox>
                 <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Name="ResultTBlock" Style="{StaticResource TextBlockForView}"></TextBlock>
             </StackPanel>
 
+            
             <TextBlock Text="Доза"></TextBlock>
             <xctk:MaskedTextBox x:Name="_maskedTextBoxDose" FontSize="19" Mask="0.000" Height="26" Grid.Row="8" FontFamily="Arial"/>
 

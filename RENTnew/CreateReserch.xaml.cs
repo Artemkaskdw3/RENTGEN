@@ -165,9 +165,26 @@ namespace RENTnew
             }
         }
 
+        private void PartOfBodyTBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int NumOrNo;
+            int.TryParse(PartOfBodyTBox.Text, out NumOrNo);
+            var Result = Helper.db.PartOfBodies.FirstOrDefault(x => x.Id == NumOrNo);
+            if (Result != null && !Result.PartOfBodyName.IsNullOrEmpty() && NumOrNo == Result.Id)
+            {
+                PartOfBodyTBlock.Text = Result.PartOfBodyName;
+                ResultTBox.Clear();
+            }
+            else
+            {
+                PartOfBodyTBlock.Text = "Ничего не найдено";
+            }
+        }
         private void ResultTBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var Result = Helper.db.Pathologies.FirstOrDefault(x => x.Title == ResultTBox.Text);
+            int NumOrNo;
+            int.TryParse(PartOfBodyTBox.Text, out NumOrNo);
+            var Result = Helper.db.Pathologies.FirstOrDefault(x => x.Title == ResultTBox.Text && x.PartOfBodyId == NumOrNo);
             if (Result != null && !Result.NamePathologies.IsNullOrEmpty())
             {
                 ResultTBlock.Text = Result.NamePathologies;
@@ -187,7 +204,10 @@ namespace RENTnew
 
 
 
-            if (!ReserchTBlock.Text.IsNullOrEmpty() && !DocTBlock.Text.IsNullOrEmpty() && !AssistTBlock.Text.IsNullOrEmpty() && !ReserchTBlock.Text.IsNullOrEmpty() && !_maskedTextBoxDose.Text.IsNullOrEmpty() )
+            if (!ReserchTBlock.Text.IsNullOrEmpty() && !DocTBlock.Text.IsNullOrEmpty() 
+                && !AssistTBlock.Text.IsNullOrEmpty()
+                && !ReserchTBlock.Text.IsNullOrEmpty() && !_maskedTextBoxDose.Text.IsNullOrEmpty() 
+                && !PartOfBodyTBox.Text.IsNullOrEmpty() && PartOfBodyTBlock.Text != "Ничего не найдено")
             {
 
             DateTime a = new DateTime();
@@ -204,7 +224,7 @@ namespace RENTnew
                     DoctorId = Helper.db.Doctors.FirstOrDefault(x => x.Title == DocTBox.Text).Id,
                     PatientId = _patient.Id,
                     Assisstant = Helper.db.Assisstants.FirstOrDefault(x => x.Title == AssistTBox.Text).Id,
-                    ResultId = Helper.db.Pathologies.FirstOrDefault(x => x.Title == ReserchTBox.Text).Id,
+                    ResultId = Helper.db.Pathologies.FirstOrDefault(x => x.Title == ReserchTBox.Text && x.PartOfBodyId == int.Parse(PartOfBodyTBox.Text)).Id,
                     Dose = decimal.Parse(_maskedTextBoxDose.Text)
 
             };
@@ -263,5 +283,6 @@ namespace RENTnew
 
 
         }
+
     }
 }
