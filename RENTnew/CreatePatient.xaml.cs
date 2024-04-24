@@ -59,7 +59,7 @@ namespace RENTnew
                 Building = houseTextBox.Text,
                 Letter = letterTextBox.Text,
                 Appartaments = apartmentTextBox.Text,
-                CreateDate = DateTime.Today
+                CreateDate = DateTime.Now
                 
             };
 

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using RENTnew.BD;
+using System;
 using System.Collections.Generic;
 
-namespace RENTnew.BD;
+namespace RENTnew;
 
 public partial class Departament
 {

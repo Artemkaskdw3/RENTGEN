@@ -37,15 +37,18 @@ public partial class RentnewContext : DbContext
 
     public virtual DbSet<SystemsRe> SystemsRes { get; set; }
 
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=10.10.55.62;Database=RENTnew; Trusted_Connection=True; TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=K-903;Database=RENTnew;  TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
+
         modelBuilder.Entity<Assisstant>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Assissta__3213E83FCD84418C");
+            entity.HasKey(e => e.Id).HasName("PK__Assissta__3213E83FEE14427B");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.FirstName)
@@ -64,7 +67,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<Departament>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__departam__3213E83F577C1C13");
+            entity.HasKey(e => e.Id).HasName("PK__departam__3213E83F1CDF0CC9");
 
             entity.ToTable("departaments");
 
@@ -79,7 +82,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<Doctor>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__doctors__3213E83F776AC109");
+            entity.HasKey(e => e.Id).HasName("PK__doctors__3213E83F4ECB7FB9");
 
             entity.ToTable("doctors");
 
@@ -100,7 +103,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<GroupingReserch>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Grouping__3213E83FFF706F28");
+            entity.HasKey(e => e.Id).HasName("PK__Grouping__3213E83F49085822");
 
             entity.ToTable("GroupingReserch");
 
@@ -115,7 +118,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<HeathCf>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__HeathCF__3213E83F697545F3");
+            entity.HasKey(e => e.Id).HasName("PK__HeathCF__3213E83F90C40B1F");
 
             entity.ToTable("HeathCF");
 
@@ -130,7 +133,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<PartOfBody>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__PartOfBo__3214EC07CCE7E252");
+            entity.HasKey(e => e.Id).HasName("PK__PartOfBo__3214EC07BB1E8BFD");
 
             entity.ToTable("PartOfBody");
 
@@ -139,7 +142,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<Pathology>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Patholog__3213E83FB49F261B");
+            entity.HasKey(e => e.Id).HasName("PK__Patholog__3213E83F119F8B27");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.NamePathologies)
@@ -156,7 +159,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<Patient>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Patients__3213E83F6D4DFD0A");
+            entity.HasKey(e => e.Id).HasName("PK__Patients__3213E83F984399C5");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Age)
@@ -170,7 +173,7 @@ public partial class RentnewContext : DbContext
                 .HasColumnName("building");
             entity.Property(e => e.City).HasMaxLength(100);
             entity.Property(e => e.CreateDate)
-                .HasColumnType("date")
+                .HasColumnType("datetime")
                 .HasColumnName("createDate");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(100)
@@ -195,7 +198,7 @@ public partial class RentnewContext : DbContext
 
         modelBuilder.Entity<Reserch>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Reserchs__3213E83F971ACC0F");
+            entity.HasKey(e => e.Id).HasName("PK__Reserchs__3213E83FCC7248E5");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.DateReserch)
@@ -217,36 +220,36 @@ public partial class RentnewContext : DbContext
 
             entity.HasOne(d => d.Departament).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.DepartamentId)
-                .HasConstraintName("FK__Reserchs__depart__4BAC3F29");
+                .HasConstraintName("FK__Reserchs__depart__60A75C0F");
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.DoctorId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reserchs__doctor__4D94879B");
+                .HasConstraintName("FK__Reserchs__doctor__628FA481");
 
             entity.HasOne(d => d.Hcf).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.Hcfid)
-                .HasConstraintName("FK__Reserchs__HCFId__4CA06362");
+                .HasConstraintName("FK__Reserchs__HCFId__619B8048");
 
             entity.HasOne(d => d.NameRerserch).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.NameRerserchId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reserchs__nameRe__4AB81AF0");
+                .HasConstraintName("FK__Reserchs__nameRe__5FB337D6");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.PatientId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reserchs__patien__4E88ABD4");
+                .HasConstraintName("FK__Reserchs__patien__6383C8BA");
 
             entity.HasOne(d => d.Result).WithMany(p => p.Reserches)
                 .HasForeignKey(d => d.ResultId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reserchs__result__4F7CD00D");
+                .HasConstraintName("FK__Reserchs__result__6477ECF3");
         });
 
         modelBuilder.Entity<ReserchsName>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Reserchs__3213E83F09342FE9");
+            entity.HasKey(e => e.Id).HasName("PK__Reserchs__3213E83FAAB2E206");
 
             entity.ToTable("ReserchsName");
 
@@ -261,17 +264,17 @@ public partial class RentnewContext : DbContext
             entity.HasOne(d => d.Group).WithMany(p => p.ReserchsNames)
                 .HasForeignKey(d => d.GroupId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ReserchsN__Group__5070F446");
+                .HasConstraintName("FK__ReserchsN__Group__66603565");
 
             entity.HasOne(d => d.System).WithMany(p => p.ReserchsNames)
                 .HasForeignKey(d => d.SystemId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__ReserchsN__Syste__5165187F");
+                .HasConstraintName("FK__ReserchsN__Syste__6754599E");
         });
 
         modelBuilder.Entity<SystemsRe>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__SystemsR__3213E83F6B4E19E6");
+            entity.HasKey(e => e.Id).HasName("PK__SystemsR__3213E83F5A4AB0A6");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.NameSystem).HasMaxLength(100);
@@ -280,7 +283,7 @@ public partial class RentnewContext : DbContext
                 .HasColumnName("title");
         });
 
-        OnModelCreatingPartial(modelBuilder);
+        
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

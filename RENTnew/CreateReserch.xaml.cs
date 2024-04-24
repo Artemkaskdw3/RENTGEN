@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
@@ -26,8 +27,9 @@ namespace RENTnew
         Patient _patient;
         public CreateReserch(Patient patient)
         {
-            this._patient = patient;
             InitializeComponent();
+            this._patient = patient;
+            _maskedTextBoxDose.Text= "0,000";
         }
 
         //private List<string> GetSimilarEntries(string searchText, string nameCB)
@@ -198,16 +200,19 @@ namespace RENTnew
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            // True - Плановая False- Экстр в БАЗЕ ДАННЫХ!!!!!!!
+            // False - Плановая True- Экстр в БАЗЕ ДАННЫХ!!!!!!!
             // True - Амбулатор False- Стационар в БАЗЕ ДАННЫХ!!!!!!!
 
+            decimal treyParcDose;
+            decimal.TryParse(_maskedTextBoxDose.Text,out treyParcDose);
 
-
-
-            if (!ReserchTBlock.Text.IsNullOrEmpty() && !DocTBlock.Text.IsNullOrEmpty() 
+            if (!ReserchTBlock.Text.IsNullOrEmpty() && !DocTBlock.Text.IsNullOrEmpty()
                 && !AssistTBlock.Text.IsNullOrEmpty()
-                && !ReserchTBlock.Text.IsNullOrEmpty() && !_maskedTextBoxDose.Text.IsNullOrEmpty() 
-                && !PartOfBodyTBox.Text.IsNullOrEmpty() && PartOfBodyTBlock.Text != "Ничего не найдено")
+                && !ReserchTBlock.Text.IsNullOrEmpty() && !_maskedTextBoxDose.Text.IsNullOrEmpty()
+                && !PartOfBodyTBox.Text.IsNullOrEmpty()
+                && !ResultTBox.Text.IsNullOrEmpty()
+                && ResultTBlock.Text != "Ничего не найдено"
+                && PartOfBodyTBlock.Text != "Ничего не найдено" && decimal.TryParse(_maskedTextBoxDose.Text, out treyParcDose))
             {
 
             DateTime a = new DateTime();
@@ -217,17 +222,17 @@ namespace RENTnew
                     DateReserch = a,
                     NameRerserchId = Helper.db.ReserchsNames.FirstOrDefault(x => x.Title == ReserchTBox.Text).Id,
                     NumOfPicture = int.Parse(PictureTBox.Text),
-                    PlanOrEmerg = Planovaya.IsChecked.Value ? Emergency.IsChecked.Value : false,
-                    InpatientOutpatient = Ambulator.IsChecked.Value ? Stacionar.IsChecked.Value : null,
+                    PlanOrEmerg = Planovaya.IsChecked.Value ? false: true,
+                    InpatientOutpatient = Planovaya.IsChecked.Value ? Ambulator.IsChecked.Value : null ,
                     DepartamentId = Helper.db.Departaments.Any(x => x.Title == DepTBox.Text) ? Helper.db.Departaments.FirstOrDefault(x => x.Title == DepTBox.Text).Id : null,
                     Hcfid = Helper.db.HeathCfs.Any(x => x.Title == HCFTBox.Text) ? Helper.db.HeathCfs.FirstOrDefault(x => x.Title == HCFTBox.Text).Id : null,
                     DoctorId = Helper.db.Doctors.FirstOrDefault(x => x.Title == DocTBox.Text).Id,
                     PatientId = _patient.Id,
                     Assisstant = Helper.db.Assisstants.FirstOrDefault(x => x.Title == AssistTBox.Text).Id,
-                    ResultId = Helper.db.Pathologies.FirstOrDefault(x => x.Title == ReserchTBox.Text && x.PartOfBodyId == int.Parse(PartOfBodyTBox.Text)).Id,
-                    Dose = decimal.Parse(_maskedTextBoxDose.Text)
+                    ResultId = Helper.db.Pathologies.FirstOrDefault(x => x.Title == ResultTBox.Text && x.PartOfBodyId == int.Parse(PartOfBodyTBox.Text)).Id,
+                    Dose = treyParcDose
 
-            };
+                };
             
 
             Helper.db.Reserchs.Add(newReserch);
@@ -249,18 +254,18 @@ namespace RENTnew
         private void Ambulator_Checked(object sender, RoutedEventArgs e)
         {
             
-                HCFTBox.IsEnabled = false;
-                DepTBox.IsEnabled = true;
-                HCFTBox.Clear();
+                HCFTBox.IsEnabled = true;
+                DepTBox.IsEnabled = false;
+                  DepTBox.Clear();
 
 
         }
 
         private void Stacionar_Checked(object sender, RoutedEventArgs e)
         {
-            HCFTBox.IsEnabled = true;
-            DepTBox.IsEnabled = false;
-            DepTBox.Clear();
+            HCFTBox.IsEnabled = false;
+            DepTBox.IsEnabled = true;
+            HCFTBox.Clear();
 
 
         }
@@ -280,6 +285,7 @@ namespace RENTnew
             Stacionar.IsEnabled = false;
             Stacionar.IsChecked = false;
             Ambulator.IsChecked = false;
+            HCFTBox.Clear();
 
 
         }

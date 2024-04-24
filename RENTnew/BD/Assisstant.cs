@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using RENTnew.BD;
 
-namespace RENTnew.BD;
+namespace RENTnew;
 
 public partial class Assisstant
 {
