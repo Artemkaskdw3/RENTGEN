@@ -90,13 +90,13 @@
         
         <Menu Grid.Row="0" Background="White">
             <MenuItem Header="Начало">
-                <Button></Button>
+               
             </MenuItem>
             <MenuItem Header="Справочник">
                 <Button></Button>
             </MenuItem>
             <MenuItem Header="Отчеты">
-                <Button></Button>
+                <MenuItem Header="Отчет рентгенологическая работа" Name="RentWork" Click="RentWork_Click" ></MenuItem>
             </MenuItem>
             <MenuItem Header="О программе">
                 <Button></Button>
@@ -162,7 +162,7 @@
                         <DataGridTextColumn Header="Дата создание" Binding="{Binding CreateDate, StringFormat='dd.MM.yyyy, HH:mm'}" Width="*" FontSize="15"/>
                         <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="*" FontSize="15"/>
                         <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*" FontSize="15"/>
-                        <DataGridTextColumn Header="Отвество" Binding="{Binding MiddleName}" Width="*" FontSize="15"/>
+                        <DataGridTextColumn Header="Отчество" Binding="{Binding MiddleName}" Width="*" FontSize="15"/>
                         <DataGridTextColumn Header="Дата рождения" Binding="{Binding Age, StringFormat='dd.MM.yyyy'}" Width="*" FontSize="15"/>
                         <DataGridTextColumn Header="Пол" Binding="{Binding Sex, Converter={StaticResource GenderConverter}}" Width="*" FontSize="15"/>
                         <DataGridTemplateColumn Header="Адрес" CellTemplate="{StaticResource Adress}"></DataGridTemplateColumn>

@@ -64,46 +64,46 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Margin="10">
             <TextBlock Text="Дата исследования:"></TextBlock>
-            <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="19" Mask="00/00/0000" Height="26" Grid.Row="8" FontFamily="Arial"/>
+            <xctk:MaskedTextBox TabIndex="0" x:Name="_maskedTextBox" FontSize="19" Mask="00/00/0000" Height="26" Grid.Row="8" FontFamily="Arial" KeyDown="_maskedTextBox_KeyDown"/>
             
             <TextBlock Text="Исследование"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <TextBox Width="50" Name="ReserchTBox" TextChanged="ReserchTB_TextChanged"></TextBox>
+                <TextBox TabIndex="1" Width="50" Name="ReserchTBox" TextChanged="ReserchTB_TextChanged" KeyDown="_maskedTextBox_KeyDown"></TextBox>
                 <TextBlock Name="ReserchTBlock" HorizontalAlignment="Left" Style="{StaticResource TextBlockForView}" ></TextBlock>
             </StackPanel>
             
             <TextBlock Text="Количество снимков"></TextBlock>
-            <xctk:IntegerUpDown FontSize="20" FontFamily="Arial" Height="25" Width="50" HorizontalAlignment="Left" Name="PictureTBox"></xctk:IntegerUpDown>
+            <xctk:IntegerUpDown TabIndex="2" KeyDown="PictureTBox_KeyDown" FontSize="20" FontFamily="Arial" Height="25" Width="50" HorizontalAlignment="Left" Name="PictureTBox"></xctk:IntegerUpDown>
             
             <TextBlock Text="Плановое\Экстренное"></TextBlock>
-            <RadioButton GroupName="Emrg" Name="Planovaya" Checked="Planovaya_Checked" Content="Плановое" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
-            <RadioButton GroupName="Emrg" Name="Emergency" Checked="Emergency_Checked" Content="Экстренное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
-            
-            <TextBlock Text="Амбулаторное\Стационарное"></TextBlock>
-            <RadioButton GroupName="InOut" Name="Ambulator" Checked="Ambulator_Checked"  Content="Амбулаторное" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
-            <RadioButton GroupName="InOut" Name="Stacionar" Checked="Stacionar_Checked" Content="Стационарное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton TabIndex="3" KeyDown="_maskedTextBox_KeyDown" GroupName="Emrg" Name="Planovaya" Checked="Planovaya_Checked" Content="Плановое" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton TabIndex="4" KeyDown="_maskedTextBox_KeyDown" GroupName="Emrg" Name="Emergency" Checked="Emergency_Checked" Content="Экстренное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+
+            <TextBlock  Text="Амбулаторное\Стационарное"></TextBlock>
+            <RadioButton TabIndex="5" KeyDown="Ambulator_KeyDown" GroupName="InOut" Name="Ambulator" Checked="Ambulator_Checked"  Content="Амбулаторное" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton TabIndex="6" KeyDown="Stacionar_KeyDown" GroupName="InOut" Name="Stacionar" Checked="Stacionar_Checked" Content="Стационарное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
 
             <TextBlock Text="Отделение"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <TextBox Name="DepTBox" Width="50" TextChanged="DepTBox_TextChanged"></TextBox>
+                <TextBox TabIndex="7" KeyDown="_maskedTextBox_KeyDown" Name="DepTBox" Width="50" TextChanged="DepTBox_TextChanged"></TextBox>
                 <TextBlock Name="DepTBlock" HorizontalAlignment="Left" Style="{StaticResource TextBlockForView}"></TextBlock>
             </StackPanel>
 
             <TextBlock Text="ЛПУ прикрепления"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <TextBox Width="50" Name="HCFTBox" TextChanged="HCFTBox_TextChanged"></TextBox>
+                <TextBox TabIndex="8" KeyDown="_maskedTextBox_KeyDown" Width="50" Name="HCFTBox" TextChanged="HCFTBox_TextChanged"></TextBox>
                 <TextBlock HorizontalAlignment="Left" Name="HCFTBlock" Style="{StaticResource TextBlockForView}"></TextBlock>
             </StackPanel>
             
             <TextBlock Text="Врач"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <TextBox Width="50" Name="DocTBox" TextChanged="DocTBox_TextChanged"></TextBox>
+                <TextBox TabIndex="9" KeyDown="_maskedTextBox_KeyDown" Width="50" Name="DocTBox" TextChanged="DocTBox_TextChanged"></TextBox>
                 <TextBlock HorizontalAlignment="Left" Name="DocTBlock" Style="{StaticResource TextBlockForView}"></TextBlock>
             </StackPanel>
 
             <TextBlock Text="Лаборант"></TextBlock>
             <StackPanel Orientation="Horizontal">
-                <TextBox Width="50" Name="AssistTBox" TextChanged="AssistTBox_TextChanged"></TextBox>
+                <TextBox TabIndex="10" KeyDown="_maskedTextBox_KeyDown" Width="50" Name="AssistTBox" TextChanged="AssistTBox_TextChanged"></TextBox>
                 <TextBlock HorizontalAlignment="Left" Style="{StaticResource TextBlockForView}" Name="AssistTBlock"></TextBlock>
             </StackPanel>
 
@@ -111,20 +111,20 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock HorizontalAlignment="Left" Margin="0,0,10,0" Text="Орган:" Style="{StaticResource TextBlockForView}"></TextBlock>
 
-                <TextBox Width="50" Name="PartOfBodyTBox" TextChanged="PartOfBodyTBox_TextChanged"></TextBox>
+                <TextBox TabIndex="11" KeyDown="_maskedTextBox_KeyDown" Width="50" Name="PartOfBodyTBox" TextChanged="PartOfBodyTBox_TextChanged"></TextBox>
                 <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Name="PartOfBodyTBlock" Style="{StaticResource TextBlockForView}"></TextBlock>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal">
                 <TextBlock HorizontalAlignment="Left" Margin="0,0,10,0" Text="Паталогия:" Style="{StaticResource TextBlockForView}"></TextBlock>
 
-                <TextBox Width="50" Name="ResultTBox" TextChanged="ResultTBox_TextChanged"></TextBox>
+                <TextBox TabIndex="12" KeyDown="_maskedTextBox_KeyDown" Width="50" Name="ResultTBox" TextChanged="ResultTBox_TextChanged"></TextBox>
                 <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Name="ResultTBlock" Style="{StaticResource TextBlockForView}"></TextBlock>
             </StackPanel>
 
             
             <TextBlock Text="Доза"></TextBlock>
-            <xctk:MaskedTextBox x:Name="_maskedTextBoxDose" FontSize="19" Mask="0.000" Height="26" Grid.Row="8" FontFamily="Arial"/>
+            <xctk:MaskedTextBox TabIndex="13" KeyDown="_maskedTextBox_KeyDown"  x:Name="_maskedTextBoxDose" FontSize="19" Mask="0.000" Height="26" Grid.Row="8" FontFamily="Arial"/>
 
             <Button Content="Создать" Name="Create" Click="Create_Click" ></Button>
             <Button Content="Отмена" Name="BackBTN" Click="BackBTN_Click"></Button>

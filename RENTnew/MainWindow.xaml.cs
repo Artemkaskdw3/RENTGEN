@@ -144,8 +144,7 @@ namespace RENTnew
             {
                 return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text)).Skip((pageNumber) * pageSize).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
             }
-         
-            
+
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -163,15 +162,20 @@ namespace RENTnew
                 }
                 else
                 {
-                    MessageBox.Show("Необходимо удалить все исследования!");
+                    
 
                 }
             }
             else
             {
-                MessageBox.Show("Исследование для удаления не выбрано");
+                MessageBox.Show("Исследование для удаления не выбрано или необходимо удалить все исследования у пациента!");
             }
 
+        }
+
+        private void RentWork_Click(object sender, RoutedEventArgs e)
+        {
+            new Report().ShowDialog();
         }
     }      
 }

@@ -1,0 +1,133 @@
+﻿<Window x:Class="RENTnew.EditReserch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RENTnew" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="EditReserch" Height="950" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="Height" Value="50"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Trigger.Setters>
+                        <Setter Property="Foreground" Value="White" />
+                    </Trigger.Setters>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="0,5,0,0"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="0,5,5,0"></Setter>
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="TextBlockForView" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="10,0,0,0"></Setter>
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Редактирование исследования"  FontSize="25" HorizontalAlignment="Center" ></TextBlock>
+            <Line Margin="0,30,0,0"
+             X1="0" Y1="0"
+             X2="900" Y2="0"
+             Stroke="LightSlateGray"
+             StrokeThickness="4" >
+            </Line>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="10">
+            <TextBlock Text="Дата исследования:"></TextBlock>
+            <xctk:MaskedTextBox TabIndex="0" x:Name="_maskedTextBox" FontSize="19" Mask="00/00/0000" Height="26" Grid.Row="8" FontFamily="Arial" KeyDown="_maskedTextBox_KeyDown"/>
+
+            <TextBlock Text="Исследование"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox TabIndex="1" Width="50" Name="ReserchTBox" TextChanged="ReserchTB_TextChanged" KeyDown="_maskedTextBox_KeyDown"></TextBox>
+                <TextBlock Name="ReserchTBlock" HorizontalAlignment="Left" Style="{StaticResource TextBlockForView}" ></TextBlock>
+            </StackPanel>
+
+            <TextBlock Text="Количество снимков"></TextBlock>
+            <xctk:IntegerUpDown TabIndex="2" KeyDown="PictureTBox_KeyDown" FontSize="20" FontFamily="Arial" Height="25" Width="50" HorizontalAlignment="Left" Name="PictureTBox"></xctk:IntegerUpDown>
+
+            <TextBlock Text="Плановое\Экстренное"></TextBlock>
+            <RadioButton TabIndex="3" KeyDown="_maskedTextBox_KeyDown" GroupName="Emrg" Name="Planovaya" Checked="Planovaya_Checked" Content="Плановое" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton TabIndex="4" KeyDown="_maskedTextBox_KeyDown" GroupName="Emrg" Name="Emergency" Checked="Emergency_Checked" Content="Экстренное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+
+            <TextBlock  Text="Амбулаторное\Стационарное"></TextBlock>
+            <RadioButton TabIndex="5" KeyDown="Ambulator_KeyDown" GroupName="InOut" Name="Ambulator" Checked="Ambulator_Checked"  Content="Амбулаторное" Margin="0,10,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+            <RadioButton TabIndex="6" KeyDown="Stacionar_KeyDown" GroupName="InOut" Name="Stacionar" Checked="Stacionar_Checked" Content="Стационарное" Margin="0,0,0,10" FontFamily="Arial" FontSize="15"></RadioButton>
+
+            <TextBlock Text="Отделение"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox TabIndex="7" KeyDown="_maskedTextBox_KeyDown" Name="DepTBox" Width="50" TextChanged="DepTBox_TextChanged"></TextBox>
+                <TextBlock Name="DepTBlock" HorizontalAlignment="Left" Style="{StaticResource TextBlockForView}"></TextBlock>
+            </StackPanel>
+
+            <TextBlock Text="ЛПУ прикрепления"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox TabIndex="8" KeyDown="_maskedTextBox_KeyDown" Width="50" Name="HCFTBox" TextChanged="HCFTBox_TextChanged"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Name="HCFTBlock" Style="{StaticResource TextBlockForView}"></TextBlock>
+            </StackPanel>
+
+            <TextBlock Text="Врач"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox TabIndex="9" KeyDown="_maskedTextBox_KeyDown" Width="50" Name="DocTBox" TextChanged="DocTBox_TextChanged"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Name="DocTBlock" Style="{StaticResource TextBlockForView}"></TextBlock>
+            </StackPanel>
+
+            <TextBlock Text="Лаборант"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBox TabIndex="10" KeyDown="_maskedTextBox_KeyDown" Width="50" Name="AssistTBox" TextChanged="AssistTBox_TextChanged"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Style="{StaticResource TextBlockForView}" Name="AssistTBlock"></TextBlock>
+            </StackPanel>
+
+            <TextBlock Text="Заключение"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" Margin="0,0,10,0" Text="Орган:" Style="{StaticResource TextBlockForView}"></TextBlock>
+
+                <TextBox TabIndex="11" KeyDown="_maskedTextBox_KeyDown" Width="50" Name="PartOfBodyTBox" TextChanged="PartOfBodyTBox_TextChanged"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Name="PartOfBodyTBlock" Style="{StaticResource TextBlockForView}"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" Margin="0,0,10,0" Text="Паталогия:" Style="{StaticResource TextBlockForView}"></TextBlock>
+
+                <TextBox TabIndex="12" KeyDown="_maskedTextBox_KeyDown" Width="50" Name="ResultTBox" TextChanged="ResultTBox_TextChanged"></TextBox>
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Name="ResultTBlock" Style="{StaticResource TextBlockForView}"></TextBlock>
+            </StackPanel>
+
+
+            <TextBlock Text="Доза"></TextBlock>
+            <xctk:MaskedTextBox TabIndex="13" KeyDown="_maskedTextBox_KeyDown"  x:Name="_maskedTextBoxDose" FontSize="19" Mask="0.000" Height="26" Grid.Row="8" FontFamily="Arial"/>
+
+            <Button Content="Редактировать" Name="Create" Click="Create_Click" ></Button>
+            <Button Content="Отмена" Name="BackBTN" Click="BackBTN_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

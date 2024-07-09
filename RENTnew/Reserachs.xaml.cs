@@ -13,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Shapes;
 
 namespace RENTnew
@@ -27,14 +28,16 @@ namespace RENTnew
         {
             InitializeComponent();
             this._patient = patient;
-            reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x =>x.Result).Where(x => x.PatientId == patient.Id).ToList();
+         
+
+            reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x => x.Result).Include(x => x.Hcf).Include(x => x.Departament).Where(x => x.PatientId == patient.Id).ToList(); ;
 
         }
 
         private void createResBTN_Click(object sender, RoutedEventArgs e)
         {
             new CreateReserch(_patient).ShowDialog();
-            reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x => x.Result).Where(x => x.PatientId == _patient.Id).ToList();
+            reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x => x.Result).Include(x => x.Hcf).Include(x => x.Departament).Where(x => x.PatientId == _patient.Id).ToList();
 
         }
 
@@ -54,7 +57,7 @@ namespace RENTnew
                     Helper.db.Reserchs.Remove(selectedRes);
                     Helper.db.SaveChanges();
                     MessageBox.Show("Исследование успешно удалено");
-                    reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x => x.Result).Where(x => x.PatientId == _patient.Id).ToList();
+                    reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x => x.Result).Include(x => x.Hcf).Include(x => x.Departament).Where(x => x.PatientId == _patient.Id).ToList();
                 }
             }
             else {
@@ -63,6 +66,16 @@ namespace RENTnew
 
 
           
+        }
+
+        private void reserchDT_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (reserchDT.SelectedItem is Reserch selectedReserch)
+            {
+                new EditReserch(selectedReserch).ShowDialog();
+            }
+            reserchDT.ItemsSource = Helper.db.Reserchs.Include(x => x.NameRerserch).Include(x => x.Result).Include(x => x.Hcf).Include(x => x.Departament).Where(x => x.PatientId == _patient.Id).ToList();
+
         }
     }
 }

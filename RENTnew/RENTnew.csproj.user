@@ -18,6 +18,12 @@
     <Compile Update="EditPatient.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="EditReserch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Report.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Reserachs.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -29,10 +35,19 @@
     <Page Update="CreateReserch.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Style.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="EditPatient.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="EditReserch.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Report.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Reserachs.xaml">

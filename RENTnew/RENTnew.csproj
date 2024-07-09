@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,16 +14,23 @@
     <None Remove="images\icons8-close-80.png" />
     <None Remove="images\icons8-delete-60.png" />
     <None Remove="images\icons8-edit-80.png" />
+    <None Remove="images\icons8-excel-144.png" />
     <None Remove="images\icons8-open-box-64.png" />
     <None Remove="images\icons8-opened-folder-80.png" />
+    <None Remove="images\icons8-pdf-2-80.png" />
     <None Remove="images\icons8-plus-80.png" />
     <None Remove="images\icons8-refresh-80.png" />
     <None Remove="images\icons8-trash-can-80.png" />
+    <None Remove="images\icons8-xls-80.png" />
     <None Remove="images\icons8-добавление-администратора-50.png" />
     <None Remove="images\icons8-изменить-пользователя-50.png" />
+    <None Remove="Template\templ.xlsx" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.102.2" />
+    <PackageReference Include="ClosedXML.Report" Version="0.2.10" />
+    <PackageReference Include="ClosedXML.Signed" Version="0.95.4" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.15">
@@ -40,10 +48,14 @@
     <Resource Include="images\icons8-back-80.png" />
     <Resource Include="images\icons8-close-80.png" />
     <Resource Include="images\icons8-edit-80.png" />
+    <Resource Include="images\icons8-excel-144.png" />
     <Resource Include="images\icons8-opened-folder-80.png" />
+    <Resource Include="images\icons8-pdf-2-80.png" />
     <Resource Include="images\icons8-plus-80.png" />
     <Resource Include="images\icons8-refresh-80.png" />
     <Resource Include="images\icons8-trash-can-80.png" />
+    <Resource Include="images\icons8-xls-80.png" />
+    <Resource Include="Template\templ.xlsx" />
   </ItemGroup>
 
 </Project>

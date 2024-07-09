@@ -84,38 +84,38 @@
         </StackPanel>
 
         <TextBlock Text="Фамилия:" Grid.Row="1" ></TextBlock>
-        <TextBox Name="surname" Grid.Row="2"></TextBox>
+        <TextBox Name="surname" Grid.Row="2" LostFocus="surname_LostFocus" KeyDown="surname_KeyDown"></TextBox>
 
         <TextBlock Text="Имя:"   Grid.Row="3"></TextBlock>
-        <TextBox Name="firstNameTB" Grid.Row="4"></TextBox>
+        <TextBox Name="firstNameTB" Grid.Row="4" LostFocus="surname_LostFocus" KeyDown="surname_KeyDown"></TextBox>
 
         <TextBlock Text="Отчество:"   Grid.Row="5"></TextBlock>
-        <TextBox Name="middleNameTB" Grid.Row="6"></TextBox>
+        <TextBox Name="middleNameTB" Grid.Row="6" LostFocus="surname_LostFocus" KeyDown="surname_KeyDown"></TextBox>
 
         <TextBlock Text="Дата рождения:"  Grid.Row="7" ></TextBlock>
-        <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="19" Mask="00/00/0000" Height="26" Grid.Row="8"/>
+        <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="19" Mask="00/00/0000" Height="26" Grid.Row="8" KeyDown="surname_KeyDown"/>
 
         <TextBlock Text="Пол:"  Grid.Row="9" ></TextBlock>
-        <ComboBox Name="sexCB" Text="My Cities" Grid.Row="10" Height="35" FontSize="20" >
+        <ComboBox Name="sexCB" Text="My Cities" Grid.Row="10" Height="35" FontSize="20"  KeyDown="surname_KeyDown">
             <ComboBoxItem Background="AliceBlue" FontFamily="Arial" >Мужской</ComboBoxItem>
             <ComboBoxItem FontFamily="Arial" >Женский</ComboBoxItem>
         </ComboBox>
 
 
         <TextBlock Text="Город:" Grid.Row="11" />
-        <TextBox x:Name="cityTextBox" Text="Томск"  Grid.Row="12"/>
+        <TextBox x:Name="cityTextBox" Text="Томск"  Grid.Row="12" LostFocus="surname_LostFocus" KeyDown="surname_KeyDown"/>
 
         <TextBlock Text="Улица:" Grid.Row="13"/>
-        <TextBox x:Name="streetTextBox" Grid.Row="14"/>
+        <TextBox x:Name="streetTextBox" Grid.Row="14" LostFocus="surname_LostFocus" KeyDown="surname_KeyDown"/>
 
-        <TextBlock Text="Дом №:"   Grid.Row="15"/>
-        <TextBox x:Name="houseTextBox"  Grid.Row="16"/>
+        <TextBlock Text="Дом №:"   Grid.Row="15" />
+        <TextBox x:Name="houseTextBox"  Grid.Row="16" KeyDown="surname_KeyDown"/>
 
         <TextBlock Text="Литера:"  Grid.Row="17"/>
-        <TextBox x:Name="letterTextBox"  Grid.Row="18"/>
+        <TextBox x:Name="letterTextBox"  Grid.Row="18" LostFocus="surname_LostFocus" KeyDown="surname_KeyDown"/>
 
         <TextBlock Text="Квартира №:" Grid.Row="19"/>
-        <TextBox x:Name="apartmentTextBox" Grid.Row="20"/>
+        <TextBox x:Name="apartmentTextBox" Grid.Row="20"  KeyDown="surname_KeyDown"/>
 
 
 

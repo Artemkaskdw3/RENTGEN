@@ -91,7 +91,7 @@
             </StackPanel>
             </Button>
         </StackPanel>
-        <DataGrid Margin="10,0,10,10" Name="reserchDT" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.Row="2" Background="#FFF9F9F9" AlternatingRowBackground="#E8E8E8" AlternationCount="2" IsReadOnly="True">
+        <DataGrid Margin="10,0,10,10" Name="reserchDT" ItemsSource="{Binding}" MouseDoubleClick="reserchDT_MouseDoubleClick" AutoGenerateColumns="False" Grid.Row="2" Background="#FFF9F9F9" AlternatingRowBackground="#E8E8E8" AlternationCount="2" IsReadOnly="True">
 
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Дата посещение" Binding="{Binding DateReserch, StringFormat='dd.MM.yyyy'}" Width="*" FontSize="15"/>

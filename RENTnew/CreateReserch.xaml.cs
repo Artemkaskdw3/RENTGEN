@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace RENTnew
@@ -25,11 +26,39 @@ namespace RENTnew
     public partial class CreateReserch : Window
     {
         Patient _patient;
+        public string dateReserchSave;
+        public string NameReserchSave;
+        public string numOfPictureSave;
+        public string DoctorSave;
+        public string AssistentSave;
+        public string DoseSave;
+
+
+
+
         public CreateReserch(Patient patient)
         {
             InitializeComponent();
+            var docTitle = Helper.db.Reserchs.OrderBy(x => x.Id).Last().DoctorId;
+            var assistTitle = Helper.db.Reserchs.OrderBy(x => x.Id).Last().Assisstant;
+            var reserchTitle = Helper.db.Reserchs.OrderBy(x => x.Id).Last().NameRerserchId;
+            var patologiya = Helper.db.Reserchs.OrderBy(x => x.Id).Last().ResultId;
+
+            DateTime a = new DateTime();
+            DateTime.TryParse(Helper.db.Reserchs.OrderBy(x => x.Id).Last().DateReserch.ToString(), out a);
+
             this._patient = patient;
-            _maskedTextBoxDose.Text= "0,000";
+            _maskedTextBox.Text = a.ToShortDateString();
+            ReserchTBox.Text = Helper.db.ReserchsNames.FirstOrDefault(x => x.Id == reserchTitle).Title;
+            PictureTBox.Text = Helper.db.Reserchs.OrderBy(x => x.Id).Last().NumOfPicture.ToString();
+            DocTBox.Text = Helper.db.Doctors.FirstOrDefault(x => x.Id == docTitle).Title;
+            AssistTBox.Text = Helper.db.Assisstants.FirstOrDefault(x => x.Id == assistTitle).Title;
+            PartOfBodyTBox.Text = Helper.db.Pathologies.FirstOrDefault(x => x.Id == patologiya).PartOfBodyId.ToString();
+            ResultTBox.Text = Helper.db.Pathologies.FirstOrDefault(x => x.Id == patologiya).Title;
+            _maskedTextBoxDose.Text = Helper.db.Reserchs.OrderBy(x => x.Id).Last().Dose.ToString();
+            Planovaya.IsChecked = true;
+            Ambulator.IsChecked = true;
+
         }
 
         //private List<string> GetSimilarEntries(string searchText, string nameCB)
@@ -212,7 +241,9 @@ namespace RENTnew
                 && !PartOfBodyTBox.Text.IsNullOrEmpty()
                 && !ResultTBox.Text.IsNullOrEmpty()
                 && ResultTBlock.Text != "Ничего не найдено"
-                && PartOfBodyTBlock.Text != "Ничего не найдено" && decimal.TryParse(_maskedTextBoxDose.Text, out treyParcDose))
+                && PartOfBodyTBlock.Text != "Ничего не найдено" && decimal.TryParse(_maskedTextBoxDose.Text, out treyParcDose)
+
+                )
             {
 
             DateTime a = new DateTime();
@@ -233,16 +264,18 @@ namespace RENTnew
                     Dose = treyParcDose
 
                 };
+
             
 
-            Helper.db.Reserchs.Add(newReserch);
+                Helper.db.Reserchs.Add(newReserch);
 
-            Helper.db.SaveChanges();
-            this.Close();
+                Helper.db.SaveChanges();
+
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Не все поля заполнены!");
+                System.Windows.MessageBox.Show("Не все поля заполнены!");
             }
         }
 
@@ -290,5 +323,101 @@ namespace RENTnew
 
         }
 
+        private void _maskedTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.Key == Key.Enter)
+            {
+                // Определяем текущий элемент в фокусе
+                var focusedElement = FocusManager.GetFocusedElement(this) as FrameworkElement;
+
+                if (focusedElement == null) return; // Если фокус не на элементе управления, выходим
+
+                switch (focusedElement.Name)
+                {
+                    case "_maskedTextBox":
+                        ReserchTBox.Focus();
+                        break;
+                    case "ReserchTBox":
+                        PictureTBox.Focus();
+                        break;
+                    case "PictureTBox":
+                        Planovaya.Focus();  
+                        break;
+                    case "Planovaya":
+                        Emergency.Focus();
+                        break;
+                    case "Emergency":
+                        Ambulator.Focus();
+                        break;
+                    case "Ambulator":
+                        Stacionar.Focus();
+                        break;
+                    case "Stacionar":
+                        DepTBox.Focus();
+                        break;
+                    case "DepTBox":
+                        if (HCFTBox.IsEnabled == true)
+                        {
+                            HCFTBox.Focus();
+
+                        }
+                        else
+                        {
+                            DocTBox.Focus();
+                        }
+                        break;
+                    case "HCFTBox":
+                        DocTBox.Focus();
+                        break;
+                    case "DocTBox":
+                        AssistTBox.Focus();
+                        break;
+                    case "AssistTBox":
+                        PartOfBodyTBox.Focus();
+                        break;
+                    case "PartOfBodyTBox":
+                        ResultTBox.Focus();
+                        break;
+                    case "ResultTBox":
+                        _maskedTextBoxDose.Focus();
+                        break;
+                    default:
+                            // Обработка случая, когда элемент не найден
+                        break;
+                }
+            }
+
+        }
+
+        private void PictureTBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Planovaya.Focus(); 
+            }
+
+        }
+
+        private void Stacionar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && Stacionar.IsChecked == true)
+            {
+                DepTBox.Focus();
+            }
+        }
+
+        private void Ambulator_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && Ambulator.IsChecked == true)
+            {
+                HCFTBox.Focus();
+            }
+            else
+            {
+                Stacionar.Focus();
+            }
+
+        }
     }
 }
