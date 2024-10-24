@@ -25,14 +25,12 @@ namespace RENTnew
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int pageNumber = 0;
-        private int pageSize = 20;
+       
         public MainWindow()
         {
             InitializeComponent();
-            //Метод PageDG Если принимает значение 0 - значит идет переход на след. страницу Если 1 - то переход на предыдущию, а если 2 - ничего не происходит
             Helper.db.Patients.Load();
-            PageDG(2);
+            SearchDataGrid();
         }
 
         private void patientDG_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -69,8 +67,8 @@ namespace RENTnew
         {
             SearchTB.Text = "";
             _maskedTextBox.Text = "";
-            PageDG(2);
-            numOfPageTB.Text = pageNumber.ToString();
+            SearchDataGrid();
+
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
@@ -78,7 +76,8 @@ namespace RENTnew
             if (patientDG.SelectedItem is Patient selectedPatient)
             {
                 new EditPatient(patientDG.SelectedItem as Patient).ShowDialog();
-                PageDG(2);
+                SearchDataGrid();
+
             }
             else
             {
@@ -89,62 +88,40 @@ namespace RENTnew
         private void CreatePatient_Click(object sender, RoutedEventArgs e)
         {
             new CreatePatient().ShowDialog();
-            pageNumber = 0;
-            PageDG(2);
-        }
-        
-        private void PageDG(int a)
-        {
-            if (!Helper.db.Patients.Any())
-            {
-                // Handle case when there are no patients in the database
-            }
-            else
-            {
-                var totalPages = (int)Math.Ceiling(Helper.db.Patients.Count() / (double)pageSize);
+            SearchDataGrid();
 
-                if (a == 1 && pageNumber < totalPages - 1)
-                {
-                    pageNumber++;
-                }
-                else if (pageNumber > 0 && a == 0)
-                {
-                    pageNumber--;
-                }
+        }
 
-                patientDG.ItemsSource = Helper.db.Patients.OrderByDescending(x => x.CreateDate).Skip((pageNumber) * pageSize).Take(pageSize).ToList();
-                numOfPageTB.Text = pageNumber.ToString();
-            }
-        }
-        private void btnNext_Click(object sender, RoutedEventArgs e)
-        {
-            PageDG(1);
-        }
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-            PageDG(0);
-        }
         private object SearchDataGrid()
         {
-           
-            if (!SearchTB.Text.IsNullOrEmpty() && _maskedTextBox.Text != "__.__.____")
-            {
+            var patientsQuery = (IQueryable<Patient>)Helper.db.Patients;
 
-                DateTime a = new DateTime();
-                DateTime.TryParse(_maskedTextBox.Text, out a);
-                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text) && x.Age == a).Skip((pageNumber) * pageSize).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
-            }
-            else if (SearchTB.Text.IsNullOrEmpty() && _maskedTextBox.Text != "__.__.____")
+            if (_maskedTextBox.Text != "__.__.____")
             {
                 DateTime a = new DateTime();
                 DateTime.TryParse(_maskedTextBox.Text, out a);
-                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Age == a).Skip((pageNumber) * pageSize).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
+
+                
+                if (!SearchTB.Text.IsNullOrEmpty())
+                {
+                    patientsQuery = patientsQuery
+                        .Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text) && x.Age == a);
+                }
+                else
+                {
+                    patientsQuery = patientsQuery
+                        .Where(x => x.Age == a);
+                }
             }
             else
             {
-                return patientDG.ItemsSource = Helper.db.Patients.Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text)).Skip((pageNumber) * pageSize).Take(pageSize).OrderByDescending(x => x.CreateDate).ToList();
+                patientsQuery = patientsQuery
+                    .Where(x => x.Surname.ToUpper().StartsWith(SearchTB.Text));
             }
 
+            return patientDG.ItemsSource = patientsQuery
+                .OrderByDescending(x => x.CreateDate)
+                .ToList();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -157,8 +134,9 @@ namespace RENTnew
                 {
                     Helper.db.Patients.Remove(selectedRes);
                     Helper.db.SaveChanges();
+                    SearchDataGrid();
                     MessageBox.Show("Пациент успешно удален");
-                    PageDG(2);
+
                 }
                 else
                 {
@@ -176,6 +154,14 @@ namespace RENTnew
         private void RentWork_Click(object sender, RoutedEventArgs e)
         {
             new Report().ShowDialog();
+        }
+
+        private void SearchTB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SearchDataGrid();
+            }
         }
     }      
 }

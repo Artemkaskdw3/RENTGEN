@@ -136,6 +136,7 @@ namespace RENTnew
                     case "apartmentTextBox":
                         Create.Focus();
                         break;
+                  
                     default:
                         // Обработка случая, когда элемент не найден
                         break;

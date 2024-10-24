@@ -102,7 +102,7 @@ namespace RENTnew {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/RENTnew;V1.0.0.0;component/report.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/RENTnew;component/report.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Report.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

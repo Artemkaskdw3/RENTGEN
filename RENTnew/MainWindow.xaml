@@ -115,9 +115,9 @@
 
                 <WrapPanel Grid.Row="0" Orientation="Horizontal" >
                     <TextBlock Text="Фамилия:" FontSize="15" Margin="5" ></TextBlock>
-                    <TextBox Width="200" Height="20" Name="SearchTB"></TextBox>
+                    <TextBox Width="200" Height="20" Name="SearchTB" KeyDown="SearchTB_KeyDown"></TextBox>
                     <TextBlock Text="Дата рождения:" FontSize="15" Margin="10,5,0,0" ></TextBlock>
-                    <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="15" Mask="00/00/0000" Height="25" Width="auto" />
+                    <xctk:MaskedTextBox x:Name="_maskedTextBox" FontSize="15" Mask="00/00/0000" Height="25" Width="auto" KeyDown="SearchTB_KeyDown"/>
                     <Button Content="Принять фильтр" FontSize="15" Name="Filter" Click="Filter_Click" Margin="10,0,5,0"></Button>
                     <Button Content="Отчистить фильтр" FontSize="15" Name="Update" Click="Update_Click" Margin="0,0,0,0"></Button>
                 </WrapPanel>
@@ -156,7 +156,7 @@
                 </WrapPanel>
 
 
-                <DataGrid CanUserSortColumns="False" AlternatingRowBackground="#E8E8E8" AlternationCount="2" Grid.Row="2" Name="patientDG" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" FontSize="15" MouseDoubleClick="patientDG_MouseDoubleClick" Background="#FFF9F9F9">
+                <DataGrid AlternatingRowBackground="#E8E8E8" AlternationCount="2" Grid.Row="2" Name="patientDG" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10" FontSize="15" MouseDoubleClick="patientDG_MouseDoubleClick" Background="#FFF9F9F9">
          
                     <DataGrid.Columns >
                         <DataGridTextColumn Header="Дата создание" Binding="{Binding CreateDate, StringFormat='dd.MM.yyyy, HH:mm'}" Width="*" FontSize="15"/>
@@ -169,12 +169,7 @@
 
                     </DataGrid.Columns>
                 </DataGrid>
-                <StackPanel Grid.Row="3" Orientation="Horizontal">
-                    <TextBlock Name="Amount"  Text="Количество строк: " FontSize="15" Margin="10"></TextBlock>
-                    <Button Content="&lt;&lt;&lt;" Style="{StaticResource PageButtonStyle}" Name="btnBack" Click="btnBack_Click"/>
-                    <TextBlock Name="numOfPageTB"  Text="1 " FontSize="15" Margin="10"></TextBlock>
-                    <Button Content=">>>" Style="{StaticResource PageButtonStyle}" Name="btnNext" Click="btnNext_Click"/>
-                </StackPanel>
+                
             </Grid>
         </UniformGrid>
     </Grid>
