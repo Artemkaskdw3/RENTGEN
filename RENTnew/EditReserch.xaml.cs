@@ -279,6 +279,7 @@ namespace RENTnew
                 {
                     case "_maskedTextBox":
                         ReserchTBox.Focus();
+                        ReserchTBox.SelectAll();
                         break;
                     case "ReserchTBox":
                         PictureTBox.Focus();

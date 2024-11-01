@@ -124,7 +124,7 @@
 
 
             <TextBlock Text="Доза"></TextBlock>
-            <xctk:MaskedTextBox TabIndex="13" KeyDown="_maskedTextBox_KeyDown"  x:Name="_maskedTextBoxDose" FontSize="19" Mask="00.000" Height="26" Grid.Row="8" FontFamily="Arial"/>
+            <xctk:MaskedTextBox TabIndex="13" KeyDown="_maskedTextBox_KeyDown"  x:Name="_maskedTextBoxDose" FontSize="19" Mask="0.000" Height="26" Grid.Row="8" FontFamily="Arial"/>
 
             <Button Content="Редактировать" Name="Create" Click="Create_Click" ></Button>
             <Button Content="Отмена" Name="BackBTN" Click="BackBTN_Click"></Button>

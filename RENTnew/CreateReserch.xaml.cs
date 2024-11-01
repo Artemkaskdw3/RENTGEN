@@ -39,25 +39,28 @@ namespace RENTnew
         public CreateReserch(Patient patient)
         {
             InitializeComponent();
-            var docTitle = Helper.db.Reserchs.OrderBy(x => x.Id).Last().DoctorId;
-            var assistTitle = Helper.db.Reserchs.OrderBy(x => x.Id).Last().Assisstant;
-            var reserchTitle = Helper.db.Reserchs.OrderBy(x => x.Id).Last().NameRerserchId;
-            var patologiya = Helper.db.Reserchs.OrderBy(x => x.Id).Last().ResultId;
+           
+                var docTitle = Helper.db.Reserchs.OrderBy(x => x.Id).Last().DoctorId;
+                var assistTitle = Helper.db.Reserchs.OrderBy(x => x.Id).Last().Assisstant;
+                var reserchTitle = Helper.db.Reserchs.OrderBy(x => x.Id).Last().NameRerserchId;
+                var patologiya = Helper.db.Reserchs.OrderBy(x => x.Id).Last().ResultId;
 
-            DateTime a = new DateTime();
-            DateTime.TryParse(Helper.db.Reserchs.OrderBy(x => x.Id).Last().DateReserch.ToString(), out a);
+                DateTime a = new DateTime();
+                DateTime.TryParse(Helper.db.Reserchs.OrderBy(x => x.Id).Last().DateReserch.ToString(), out a);
 
-            this._patient = patient;
-            _maskedTextBox.Text = a.ToShortDateString();
-            ReserchTBox.Text = Helper.db.ReserchsNames.FirstOrDefault(x => x.Id == reserchTitle).Title;
-            PictureTBox.Text = Helper.db.Reserchs.OrderBy(x => x.Id).Last().NumOfPicture.ToString();
-            DocTBox.Text = Helper.db.Doctors.FirstOrDefault(x => x.Id == docTitle).Title;
-            AssistTBox.Text = Helper.db.Assisstants.FirstOrDefault(x => x.Id == assistTitle).Title;
-            PartOfBodyTBox.Text = Helper.db.Pathologies.FirstOrDefault(x => x.Id == patologiya).PartOfBodyId.ToString();
-            ResultTBox.Text = Helper.db.Pathologies.FirstOrDefault(x => x.Id == patologiya).Title;
-            _maskedTextBoxDose.Text = Helper.db.Reserchs.OrderBy(x => x.Id).Last().Dose.ToString();
-            Planovaya.IsChecked = true;
-            Ambulator.IsChecked = true;
+                this._patient = patient;
+                _maskedTextBox.Text = a.ToShortDateString();
+                ReserchTBox.Text = Helper.db.ReserchsNames.FirstOrDefault(x => x.Id == reserchTitle).Title;
+                PictureTBox.Text = Helper.db.Reserchs.OrderBy(x => x.Id).Last().NumOfPicture.ToString();
+                DocTBox.Text = Helper.db.Doctors.FirstOrDefault(x => x.Id == docTitle).Title;
+                AssistTBox.Text = Helper.db.Assisstants.FirstOrDefault(x => x.Id == assistTitle).Title;
+                PartOfBodyTBox.Text = Helper.db.Pathologies.FirstOrDefault(x => x.Id == patologiya).PartOfBodyId.ToString();
+                ResultTBox.Text = Helper.db.Pathologies.FirstOrDefault(x => x.Id == patologiya).Title;
+                _maskedTextBoxDose.Text = Helper.db.Reserchs.OrderBy(x => x.Id).Last().Dose.ToString();
+                Planovaya.IsChecked = true;
+                Ambulator.IsChecked = true;
+                _maskedTextBox.SelectAll();
+
 
         }
         private void ReserchTB_TextChanged(object sender, TextChangedEventArgs e)
@@ -200,7 +203,28 @@ namespace RENTnew
 
                 };
 
-            
+                if (Planovaya.IsChecked.Value == true && DepTBox.IsEnabled && HCFTBox.IsEnabled)
+                {
+                    System.Windows.MessageBox.Show("Возможно не выбрано Стационарное или амбулаторное");
+                    return;
+
+                }
+                if (Planovaya.IsChecked.Value == false && DepTBox.Text.IsNullOrEmpty())
+                {
+                    System.Windows.MessageBox.Show("Возможно не заполнено ОТДЕЛЕНИЕ");
+                    return;
+                }
+                if (Planovaya.IsChecked.Value == true && Ambulator.IsChecked.Value == true && HCFTBox.Text.IsNullOrEmpty())
+                {
+                    System.Windows.MessageBox.Show("Возможно не заполнено ЛПУ");
+                    return;
+                }
+                if (Planovaya.IsChecked.Value == true && Ambulator.IsChecked.Value == false && DepTBox.Text.IsNullOrEmpty())
+                {
+                    System.Windows.MessageBox.Show("Возможно не заполнено ОТДЕЛЕНИЕ");
+                    return;
+                }
+                
 
                 Helper.db.Reserchs.Add(newReserch);
 
@@ -267,17 +291,18 @@ namespace RENTnew
                 var focusedElement = FocusManager.GetFocusedElement(this) as FrameworkElement;
 
                 if (focusedElement == null) return; // Если фокус не на элементе управления, выходим
-
                 switch (focusedElement.Name)
                 {
                     case "_maskedTextBox":
                         ReserchTBox.Focus();
+                        ReserchTBox.SelectAll();
                         break;
                     case "ReserchTBox":
                         PictureTBox.Focus();
+                            
                         break;
                     case "PictureTBox":
-                        Planovaya.Focus();  
+                        Planovaya.Focus();
                         break;
                     case "Planovaya":
                         Emergency.Focus();
@@ -290,32 +315,41 @@ namespace RENTnew
                         break;
                     case "Stacionar":
                         DepTBox.Focus();
+                        DepTBox.SelectAll();
                         break;
                     case "DepTBox":
                         if (HCFTBox.IsEnabled == true)
                         {
                             HCFTBox.Focus();
+                            HCFTBox.SelectAll();
 
                         }
                         else
                         {
                             DocTBox.Focus();
+                            DocTBox.SelectAll();
                         }
                         break;
                     case "HCFTBox":
                         DocTBox.Focus();
+                        DocTBox.SelectAll();
+
                         break;
                     case "DocTBox":
                         AssistTBox.Focus();
+                        AssistTBox.SelectAll();
                         break;
                     case "AssistTBox":
                         PartOfBodyTBox.Focus();
+                        PartOfBodyTBox.SelectAll();
                         break;
                     case "PartOfBodyTBox":
                         ResultTBox.Focus();
+                        ReserchTBox.SelectAll();
                         break;
                     case "ResultTBox":
                         _maskedTextBoxDose.Focus();
+                        _maskedTextBoxDose.SelectAll();
                         break;
                     case "_maskedTextBoxDose":
                         Create.Focus();

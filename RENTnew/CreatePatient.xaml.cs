@@ -22,7 +22,7 @@ namespace RENTnew
         public CreatePatient()
         {
             InitializeComponent();
-            
+            surname.SelectAll();
         }
         static bool TextIsDate(string text)
         {
@@ -88,10 +88,24 @@ namespace RENTnew
         private void surname_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
+
             if (!string.IsNullOrEmpty(textBox.Text))
             {
-                textBox.Text = char.ToUpper(textBox.Text[0]) + textBox.Text.Substring(1).ToLower();
+                string[] words = textBox.Text.Split(' '); // Разделяем строку на слова по пробелам
+
+                string result = "";
+                foreach (string word in words)
+                {
+                    if (!string.IsNullOrEmpty(word))
+                    {
+                        result += char.ToUpper(word[0]) + word.Substring(1).ToLower() + " ";
+                    }
+                }
+
+                textBox.Text = result.Trim(); // Удаляем лишний пробел в конце
             }
+
+
 
         }
 
@@ -108,30 +122,38 @@ namespace RENTnew
                 {
                     case "surname":
                         firstNameTB.Focus();
+                        firstNameTB.SelectAll();
                         break;
                     case "firstNameTB":
                         middleNameTB.Focus();
+                        middleNameTB.SelectAll();
                         break;
                     case "middleNameTB":
                         _maskedTextBox.Focus();
+                        _maskedTextBox.SelectAll();
                         break;
                     case "_maskedTextBox":
                         sexCB.Focus();
                         break;
                     case "sexCB":
                         cityTextBox.Focus();
+                        cityTextBox.SelectAll();
                         break;
                     case "cityTextBox":
                         streetTextBox.Focus();
+                        streetTextBox.SelectAll();
                         break;
                     case "streetTextBox":
                         houseTextBox.Focus();
+                        houseTextBox.SelectAll();
                         break;
                     case "houseTextBox":
                         letterTextBox.Focus();
+                        letterTextBox.SelectAll();
                         break;
                     case "letterTextBox":
                         apartmentTextBox.Focus();
+                        apartmentTextBox.SelectAll();
                         break;
                     case "apartmentTextBox":
                         Create.Focus();
