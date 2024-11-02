@@ -345,7 +345,7 @@ namespace RENTnew
                         break;
                     case "PartOfBodyTBox":
                         ResultTBox.Focus();
-                        ReserchTBox.SelectAll();
+                        ResultTBox.SelectAll();
                         break;
                     case "ResultTBox":
                         _maskedTextBoxDose.Focus();

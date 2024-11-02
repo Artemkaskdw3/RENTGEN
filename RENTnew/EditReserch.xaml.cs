@@ -298,32 +298,41 @@ namespace RENTnew
                         break;
                     case "Stacionar":
                         DepTBox.Focus();
+                        DepTBox.SelectAll();
                         break;
                     case "DepTBox":
                         if (HCFTBox.IsEnabled == true)
                         {
                             HCFTBox.Focus();
+                            HCFTBox.SelectAll();
 
                         }
                         else
                         {
                             DocTBox.Focus();
+                            DocTBox.SelectAll();
                         }
                         break;
                     case "HCFTBox":
                         DocTBox.Focus();
+                        DocTBox.SelectAll();
+
                         break;
                     case "DocTBox":
                         AssistTBox.Focus();
+                        AssistTBox.SelectAll();
                         break;
                     case "AssistTBox":
                         PartOfBodyTBox.Focus();
+                        PartOfBodyTBox.SelectAll();
                         break;
                     case "PartOfBodyTBox":
                         ResultTBox.Focus();
+                        ResultTBox.SelectAll();
                         break;
                     case "ResultTBox":
                         _maskedTextBoxDose.Focus();
+                        _maskedTextBoxDose.SelectAll();
                         break;
                     default:
                         // Обработка случая, когда элемент не найден
@@ -347,6 +356,7 @@ namespace RENTnew
             if (e.Key == Key.Enter && Stacionar.IsChecked == true)
             {
                 DepTBox.Focus();
+                DepTBox.SelectAll();
             }
         }
 
@@ -355,6 +365,7 @@ namespace RENTnew
             if (e.Key == Key.Enter && Ambulator.IsChecked == true)
             {
                 HCFTBox.Focus();
+                HCFTBox.SelectAll();
             }
             else
             {
